@@ -13,17 +13,18 @@ import { BreadcrumbComponent } from '@shared/components/breadcrumb/breadcrumb.co
     selector: 'app-edit-course',
     templateUrl: './edit-course.component.html',
     styleUrls: ['./edit-course.component.scss'],
-    imports: [
-        BreadcrumbComponent,
-        FormsModule,
-        ReactiveFormsModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatDatepickerModule,
-        MatSelectModule,
-        MatOptionModule,
-        FileUploadComponent,
-        MatButtonModule,
+    imports: 
+    [
+      BreadcrumbComponent,
+      FormsModule,
+      ReactiveFormsModule,
+      MatFormFieldModule,
+      MatInputModule,
+      MatDatepickerModule,
+      MatSelectModule,
+      MatOptionModule,
+      FileUploadComponent,
+      MatButtonModule,
     ]
 })
 export class EditCourseComponent {

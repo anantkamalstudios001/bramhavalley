@@ -11,17 +11,18 @@ import { BreadcrumbComponent } from '@shared/components/breadcrumb/breadcrumb.co
 
 @Component({
   selector: 'app-quick-links-manager',
-  imports: [
+  imports: 
+  [
     BreadcrumbComponent,
-        FormsModule,
-        ReactiveFormsModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatSelectModule,
-        MatOptionModule,
-        MatDatepickerModule,
-        MatButtonModule,
-        CommonModule
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatOptionModule,
+    MatDatepickerModule,
+    MatButtonModule,
+    CommonModule
   ],
   templateUrl: './quick-links-manager.component.html',
   styleUrl: './quick-links-manager.component.scss'

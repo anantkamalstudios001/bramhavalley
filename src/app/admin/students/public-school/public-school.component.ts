@@ -11,17 +11,18 @@ import { BreadcrumbComponent } from '@shared/components/breadcrumb/breadcrumb.co
 
 @Component({
   selector: 'app-public-school',
-  imports: [
-     BreadcrumbComponent,
-            FormsModule,
-            ReactiveFormsModule,
-            MatFormFieldModule,
-            MatInputModule,
-            MatSelectModule,
-            MatOptionModule,
-            MatDatepickerModule,
-            MatButtonModule,
-            CommonModule
+  imports: 
+  [
+    BreadcrumbComponent,
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatOptionModule,
+    MatDatepickerModule,
+    MatButtonModule,
+    CommonModule
   ],
   templateUrl: './public-school.component.html',
   styleUrl: './public-school.component.scss'

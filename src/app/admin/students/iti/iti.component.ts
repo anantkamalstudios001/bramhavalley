@@ -11,17 +11,18 @@ import { BreadcrumbComponent } from '@shared/components/breadcrumb/breadcrumb.co
 
 @Component({
   selector: 'app-iti',
-  imports: [
-     BreadcrumbComponent,
-            FormsModule,
-            ReactiveFormsModule,
-            MatFormFieldModule,
-            MatInputModule,
-            MatSelectModule,
-            MatOptionModule,
-            MatDatepickerModule,
-            MatButtonModule,
-            CommonModule
+  imports: 
+  [
+    BreadcrumbComponent,
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatOptionModule,
+    MatDatepickerModule,
+    MatButtonModule,
+    CommonModule
   ],
   templateUrl: './iti.component.html',
   styleUrl: './iti.component.scss'

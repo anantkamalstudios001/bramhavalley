@@ -11,17 +11,18 @@ import { BreadcrumbComponent } from '@shared/components/breadcrumb/breadcrumb.co
 
 @Component({
   selector: 'app-polytechnic',
-  imports: [
+  imports: 
+  [
     BreadcrumbComponent,
-            FormsModule,
-            ReactiveFormsModule,
-            MatFormFieldModule,
-            MatInputModule,
-            MatSelectModule,
-            MatOptionModule,
-            MatDatepickerModule,
-            MatButtonModule,
-            CommonModule
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatOptionModule,
+    MatDatepickerModule,
+    MatButtonModule,
+    CommonModule
   ],
   templateUrl: './polytechnic.component.html',
   styleUrl: './polytechnic.component.scss'

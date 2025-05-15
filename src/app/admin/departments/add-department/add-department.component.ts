@@ -13,17 +13,18 @@ import { BreadcrumbComponent } from '@shared/components/breadcrumb/breadcrumb.co
     selector: 'app-add-department',
     templateUrl: './add-department.component.html',
     styleUrls: ['./add-department.component.scss'],
-    imports: [
-        BreadcrumbComponent,
-        FormsModule,
-        ReactiveFormsModule,
-        MatFormFieldModule,
-        MatSelectModule,
-        MatOptionModule,
-        MatInputModule,
-        MatIconModule,
-        MatDatepickerModule,
-        MatButtonModule,
+    imports: 
+    [
+      BreadcrumbComponent,
+      FormsModule,
+      ReactiveFormsModule,
+      MatFormFieldModule,
+      MatSelectModule,
+      MatOptionModule,
+      MatInputModule,
+      MatIconModule,
+      MatDatepickerModule,
+      MatButtonModule,
     ]
 })
 export class AddDepartmentComponent {

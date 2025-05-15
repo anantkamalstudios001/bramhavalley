@@ -44,7 +44,8 @@ import { BreadcrumbComponent } from '@shared/components/breadcrumb/breadcrumb.co
   templateUrl: './all-departments.component.html',
   styleUrls: ['./all-departments.component.scss'],
   animations: [rowsAnimation],
-  imports: [
+  imports: 
+  [
     BreadcrumbComponent,
     FeatherIconsComponent,
     CommonModule,

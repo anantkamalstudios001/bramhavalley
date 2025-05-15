@@ -14,18 +14,19 @@ import { BreadcrumbComponent } from '@shared/components/breadcrumb/breadcrumb.co
     selector: 'app-add-fees',
     templateUrl: './add-fees.component.html',
     styleUrls: ['./add-fees.component.scss'],
-    imports: [
-        BreadcrumbComponent,
-        FormsModule,
-        ReactiveFormsModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatIconModule,
-        MatSelectModule,
-        MatOptionModule,
-        MatRadioModule,
-        MatDatepickerModule,
-        MatButtonModule,
+    imports: 
+    [
+      BreadcrumbComponent,
+      FormsModule,
+      ReactiveFormsModule,
+      MatFormFieldModule,
+      MatInputModule,
+      MatIconModule,
+      MatSelectModule,
+      MatOptionModule,
+      MatRadioModule,
+      MatDatepickerModule,
+      MatButtonModule,
     ]
 })
 export class AddFeesComponent {
