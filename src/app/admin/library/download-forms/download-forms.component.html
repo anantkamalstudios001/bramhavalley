@@ -1,0 +1,58 @@
+<section class="content">
+  <div class="content-block">
+    @for (breadscrum of breadscrums; track breadscrum) {
+    <div class="block-header">
+      <!-- breadcrumb -->
+      <app-breadcrumb [title]="breadscrum.title" [items]="breadscrum.items" [active_item]="breadscrum.active">
+      </app-breadcrumb>
+    </div>
+    }
+        <div class="container mt-4">
+  <h3>Upload Download Form</h3>
+  <form [formGroup]="downloadForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+    <div class="mb-3">
+      <label class="form-label">Form Title</label>
+      <input type="text" class="form-control" formControlName="title">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Description</label>
+      <textarea class="form-control" formControlName="description" rows="3"></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Category</label>
+      <select class="form-select" formControlName="category">
+        <option value="">Select Category</option>
+        <option value="Admission">Admission</option>
+        <option value="Exam">Exam</option>
+        <option value="General">General</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Upload File</label>
+      <input type="file" class="form-control" (change)="onFileSelect($event)">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Upload Date</label>
+      <input type="date" class="form-control" formControlName="uploadDate">
+    </div>
+
+    <div class="form-check mb-3">
+      <input type="checkbox" class="form-check-input" formControlName="isActive">
+      <label class="form-check-label">Active</label>
+    </div>
+
+    <button class="btn btn-primary" type="submit" [disabled]="downloadForm.invalid || !selectedFile">
+      Upload Form
+    </button>
+  </form>
+</div>
+
+
+
+
+    </div>
+</section>

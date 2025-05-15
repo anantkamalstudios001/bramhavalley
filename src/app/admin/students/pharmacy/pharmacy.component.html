@@ -1,0 +1,60 @@
+<section class="content">
+  <div class="content-block">
+    @for (breadscrum of breadscrums; track breadscrum) {
+    <div class="block-header">
+      <!-- breadcrumb -->
+      <app-breadcrumb [title]="breadscrum.title" [items]="breadscrum.items" [active_item]="breadscrum.active">
+      </app-breadcrumb>
+    </div>
+    }
+        <div class="container mt-4">
+  <h3>Pharmacy Program Management</h3>
+  <form [formGroup]="pharmacyForm" (ngSubmit)="onSubmit()">
+
+    <div class="mb-3">
+      <label class="form-label">Program Title</label>
+      <input type="text" class="form-control" formControlName="title" placeholder="e.g. Bachelor of Pharmacy (B.Pharm)" />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Program Description</label>
+      <textarea class="form-control" rows="4" formControlName="description" placeholder="Description of the pharmacy program"></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Program Type</label>
+      <select class="form-select" formControlName="programType">
+        <option value="">Select</option>
+        <option value="B.Pharm">B.Pharm</option>
+        <option value="D.Pharm">D.Pharm</option>
+        <option value="M.Pharm">M.Pharm</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Eligibility</label>
+      <input type="text" class="form-control" formControlName="eligibility" placeholder="e.g. 10+2 with Science (PCB/PCM)" />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Duration</label>
+      <input type="text" class="form-control" formControlName="duration" placeholder="e.g. 4 Years for B.Pharm" />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Career Opportunities</label>
+      <textarea class="form-control" rows="3" formControlName="career" placeholder="e.g. Pharmacist, R&D Executive, Drug Inspector..."></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Upload Brochure (PDF)</label>
+      <input type="file" class="form-control" (change)="onFileSelect($event)" />
+    </div>
+
+    <button type="submit" class="btn btn-success">Save Program</button>
+  </form>
+</div>
+
+
+    </div>
+</section>

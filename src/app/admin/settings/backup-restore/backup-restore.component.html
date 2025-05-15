@@ -1,0 +1,56 @@
+<section class="content">
+  <div class="content-block">
+    @for (breadscrum of breadscrums; track breadscrum) {
+    <div class="block-header">
+      <!-- breadcrumb -->
+      <app-breadcrumb [title]="breadscrum.title" [items]="breadscrum.items" [active_item]="breadscrum.active">
+      </app-breadcrumb>
+    </div>
+    }
+
+    <div class="container mt-4">
+  <h3>Backup & Restore</h3>
+
+  <!-- Create Backup -->
+  <form (ngSubmit)="createBackup()" class="mb-4">
+    <button type="submit" class="btn btn-success">Create New Backup</button>
+  </form>
+
+  <!-- Upload & Restore Backup -->
+  <form (ngSubmit)="uploadRestore()" enctype="multipart/form-data" class="mb-4">
+    <div class="mb-3">
+      <label class="form-label">Upload Backup File</label>
+      <input type="file" class="form-control" (change)="onFileSelect($event)" />
+    </div>
+    <button type="submit" class="btn btn-primary">Upload & Restore</button>
+  </form>
+
+  <!-- Backup List -->
+  <h5>Existing Backups</h5>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Filename</th>
+        <th>Date Created</th>
+        <th>Size</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let backup of backups">
+        <td>{{ backup.name }}</td>
+        <td>{{ backup.date }}</td>
+        <td>{{ backup.size }} MB</td>
+        <td>
+          <button class="btn btn-sm btn-warning me-2" (click)="restoreBackup(backup)">Restore</button>
+          <button class="btn btn-sm btn-danger" (click)="deleteBackup(backup)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
+    </div>
+</section>

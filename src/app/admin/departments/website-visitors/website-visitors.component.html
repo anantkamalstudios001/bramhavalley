@@ -1,0 +1,61 @@
+<section class="content">
+  <div class="content-block">
+    @for (breadscrum of breadscrums; track breadscrum) {
+    <div class="block-header">
+      <!-- breadcrumb -->
+      <app-breadcrumb [title]="breadscrum.title" [items]="breadscrum.items" [active_item]="breadscrum.active">
+      </app-breadcrumb>
+    </div>
+    }
+        <div class="container mt-4">
+  <h3>Website Visitor Information</h3>
+  <form [formGroup]="visitorForm" (ngSubmit)="onSubmit()">
+    
+    <div class="mb-3">
+      <label class="form-label">Visitor Name</label>
+      <input type="text" class="form-control" formControlName="name">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Email</label>
+      <input type="email" class="form-control" formControlName="email">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Phone Number</label>
+      <input type="tel" class="form-control" formControlName="phone">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Purpose of Visit / Inquiry</label>
+      <select class="form-select" formControlName="purpose">
+        <option value="">Select Purpose</option>
+        <option value="Admission Inquiry">Admission Inquiry</option>
+        <option value="General Feedback">General Feedback</option>
+        <option value="Event Registration">Event Registration</option>
+        <option value="Other">Other</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Date of Visit</label>
+      <input type="date" class="form-control" formControlName="visitDate">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Comments / Message</label>
+      <textarea class="form-control" formControlName="comments" rows="3"></textarea>
+    </div>
+
+    <div class="form-check mb-3">
+      <input type="checkbox" class="form-check-input" formControlName="followUp">
+      <label class="form-check-label">Follow-up Required</label>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="visitorForm.invalid">Submit</button>
+  </form>
+</div>
+
+
+    </div>
+</section>

@@ -1,0 +1,202 @@
+<nav #navbar class="navbar active">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a href="#" onClick="return false;" class="navbar-toggle collapsed"
+        (click)="isNavbarCollapsed = !isNavbarCollapsed" aria-expanded="false"></a>
+      <a href="#" onClick="return false;" class="bars" (click)="mobileMenuSidebarOpen($event,'overlay-open')"></a>
+      <a class="navbar-brand" routerLink={{homePage}}>
+        <img src="assets/images/logo.png" alt="" />
+        <span class="logo-name">Smart</span>
+      </a>
+    </div>
+    <div class="collapse navbar-collapse" [ngClass]="isNavbarCollapsed ? '' : 'show'">
+      <ul class="float-start collapse-menu-icon">
+        <li>
+          <button mat-icon-button (click)="callSidemenuCollapse()" class="sidemenu-collapse nav-notification-icons"> <i
+              class="material-icons-outlined icon-color">
+              menu
+            </i></button>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <!-- Full Screen Button -->
+        <li class="fullscreen">
+          <button mat-icon-button class="nav-notification-icons" (click)="callFullscreen()"> <i
+              class="material-icons-outlined icon-color">
+              fullscreen
+            </i></button>
+        </li>
+        <!-- #END# Full Screen Button -->
+        <!-- #START# Notifications-->
+        <li>
+          <button mat-icon-button [matMenuTriggerFor]="notificationMenu" class="nav-notification-icons"> <i
+              class="material-icons-outlined icon-color">
+              notifications_active
+            </i></button>
+          <mat-menu #notificationMenu="matMenu" class="nfc-menu">
+            <div class="nfc-header">
+              <h5 class="mb-0">Notitications</h5>
+              <a class="nfc-mark-as-read">Mark all as read</a>
+            </div>
+            <div class="nfc-dropdown">
+              <ng-scrollbar style="height: 350px" visibility="hover">
+                <div class="noti-list header-menu">
+                  <div class="menu">
+                    <div>
+                      @for (notification of notifications; track notification) {
+                      <button mat-menu-item onClick="return false;" [ngClass]="[notification.status]">
+                        <span class="table-img msg-user ">
+                          <i class="material-icons-outlined nfc-type-icon"
+                            [ngClass]="[notification.color]">{{notification.icon}}</i>
+                        </span>
+                        <span class="menu-info">
+                          <span class="menu-title">{{notification.message}}</span>
+                          <span class="menu-desc mt-2">
+                            <i class="material-icons">access_time</i> {{notification.time}}
+                          </span>
+                        </span>
+                        <span class="nfc-close">
+                          <app-feather-icons [icon]="'x'" [class]="'user-menu-icons'"></app-feather-icons>
+                        </span>
+                      </button>
+                      }
+                    </div>
+                  </div>
+                </div>
+              </ng-scrollbar>
+            </div>
+            <div class="nfc-footer">
+              <a class="nfc-read-all">Read
+                All Notifications</a>
+            </div>
+          </mat-menu>
+        </li>
+        <!-- #END# Notifications-->
+        <li class="nav-item">
+          <button mat-icon-button [matMenuTriggerFor]="languagemenu" class="lang-dropdown nav-notification-icons"> @if
+            (flagvalue !== undefined) {
+            <img src="{{flagvalue}}" height="16">
+            }
+            @if (flagvalue === undefined) {
+            <img src="{{defaultFlag}}" height="16">
+            }</button>
+          <mat-menu #languagemenu="matMenu">
+            @for (item of listLang; track item) {
+            <div class="lang-item">
+              <button mat-menu-item class="dropdown-item lang-item-list"
+                (click)="setLanguage(item.text, item.lang, item.flag)"
+                [ngClass]="{'active': langStoreValue === item.lang}">
+                <img src="{{item.flag}}" class="flag-img" height="12"> <span class="align-middle">{{item.text}}</span>
+              </button>
+            </div>
+            }
+          </mat-menu>
+        </li>
+        <li class="nav-item user_profile">
+          <button mat-button [matMenuTriggerFor]="profilemenu">
+            <div class="chip dropdown-toggle" ngbDropdownToggle class="pt-0">
+              <img src="{{userImg}}" class="user_img" width="32" height="32" alt="User">
+              <span>Ella Jones</span>
+            </div>
+          </button>
+          <mat-menu #profilemenu="matMenu" class="profile-menu">
+            <div class="noti-list">
+              <div class="menu ">
+                <div class="user_dw_menu">
+                  <button mat-menu-item class="user-item-list">
+                    <app-feather-icons [icon]="'user'" [class]="'user-menu-icons'"></app-feather-icons>Account
+                  </button>
+                  <button mat-menu-item class="user-item-list">
+                    <app-feather-icons [icon]="'mail'" [class]="'user-menu-icons'"></app-feather-icons>Inbox
+                  </button>
+                  <button mat-menu-item class="user-item-list">
+                    <!-- <app-feather-icons [icon]="'settings'" [class]="'user-menu-icons'"></app-feather-icons>Settings -->
+                     Settings
+                    <div class="settingSidebar" [ngClass]="isOpenSidebar ? 'showSettingPanel' : ''">
+  <a href="javascript:void(0)" class="settingPanelToggle" (click)="toggleRightSidebar()">
+    <app-feather-icons [icon]="'settings'" [class]="'setting-sidebar-icon'"></app-feather-icons>
+  </a>
+  <ng-scrollbar [style.height]="maxHeight + 'px'" visibility="hover">
+    <div class="settingSidebar-body ps-container ps-theme-default">
+      <div class=" fade show active">
+        <div class="setting-panel-header">Setting Panel
+        </div>
+        <div class="p-15 border-bottom">
+          <h6 class="font-medium m-b-10">Select Layout</h6>
+          <div class="flex flex-wrap hiddenradio">
+            <div class="flex flex-col ">
+              <label>
+                <input type="radio" name="value" value="light" [checked]="isDarTheme === false ? true : false"
+                  (click)="lightThemeBtnClick()">
+                <img src="assets/images/light.png">
+              </label>
+              <div class="mt-1 text-md text-center"> Light </div>
+            </div>
+            <div class="flex flex-col mt-3"> <label>
+                <input type="radio" name="value" value="dark" [checked]="isDarTheme === true ? true : false"
+                  (click)="darkThemeBtnClick()">
+                <img src="assets/images/dark.png">
+              </label>
+              <div class="mt-1 text-md text-center"> Dark </div>
+            </div>
+          </div>
+        </div>
+        <div class="rightSetting">
+          <h6 class="font-medium m-b-10">Sidebar Menu Color</h6>
+          <mat-button-toggle-group class="mt-2" [value]="isDarkSidebar ? 'dark' : 'light'">
+            <mat-button-toggle (click)="lightSidebarBtnClick()" value="light">Light</mat-button-toggle>
+            <mat-button-toggle (click)="darkSidebarBtnClick()" value="dark">Dark</mat-button-toggle>
+          </mat-button-toggle-group>
+        </div>
+        <div class="p-15 border-bottom">
+          <h6 class="font-medium m-b-10">Color Theme</h6>
+          <div class="theme-setting-options">
+            <ul class="choose-theme list-unstyled mb-0">
+              <li data-theme="white" [ngClass]="{'active': selectedBgColor === 'white'}" (click)="selectTheme('white')">
+                <div class="white"></div>
+              </li>
+              <li data-theme="black" [ngClass]="{'active': selectedBgColor === 'black'}" (click)="selectTheme('black')">
+                <div class="black"></div>
+              </li>
+              <li data-theme="purple" [ngClass]="{'active': selectedBgColor === 'purple'}"
+                (click)="selectTheme('purple')">
+                <div class="purple"></div>
+              </li>
+              <li data-theme="orange" [ngClass]="{'active': selectedBgColor === 'orange'}"
+                (click)="selectTheme('orange')">
+                <div class="orange"></div>
+              </li>
+              <li data-theme="cyan" [ngClass]="{'active': selectedBgColor === 'cyan'}" (click)="selectTheme('cyan')">
+                <div class="cyan"></div>
+              </li>
+              <li data-theme="green" [ngClass]="{'active': selectedBgColor === 'green'}" (click)="selectTheme('green')">
+                <div class="green"></div>
+              </li>
+              <li data-theme="blue" [ngClass]="{'active': selectedBgColor === 'blue'}" (click)="selectTheme('blue')">
+                <div class="blue"></div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="rightSetting">
+          <h6 class="font-medium m-b-10">RTL Layout</h6>
+          <mat-slide-toggle class="mt-2" [checked]="isRtl" (change)="switchDirection($event)"></mat-slide-toggle>
+        </div>
+      </div>
+    </div>
+  </ng-scrollbar>
+</div>
+                  </button>
+                  <button mat-menu-item (click)="logout()" class="user-item-list">
+                    <app-feather-icons [icon]="'log-out'" [class]="'user-menu-icons'"></app-feather-icons>Logout
+                  </button>
+                </div>
+              </div>
+            </div>
+          </mat-menu>
+        </li>
+        <!-- #END# Tasks -->
+      </ul>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,61 @@
+<section class="content">
+  <div class="content-block">
+    @for (breadscrum of breadscrums; track breadscrum) {
+    <div class="block-header">
+      <!-- breadcrumb -->
+      <app-breadcrumb [title]="breadscrum.title" [items]="breadscrum.items" [active_item]="breadscrum.active">
+      </app-breadcrumb>
+    </div>
+    }
+        <div class="container mt-4">
+  <h3>Update Application Status</h3>
+  <form [formGroup]="applicationForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label class="form-label">Application ID</label>
+      <input type="text" class="form-control" formControlName="applicationId">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Applicant Name</label>
+      <input type="text" class="form-control" formControlName="applicantName">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Course Applied For</label>
+      <input type="text" class="form-control" formControlName="course">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Application Date</label>
+      <input type="date" class="form-control" formControlName="applicationDate">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Status</label>
+      <select class="form-select" formControlName="status">
+        <option value="">Select Status</option>
+        <option value="Pending">Pending</option>
+        <option value="Approved">Approved</option>
+        <option value="Rejected">Rejected</option>
+        <option value="Under Review">Under Review</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Remarks / Notes</label>
+      <textarea class="form-control" rows="3" formControlName="remarks"></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Last Updated Date</label>
+      <input type="date" class="form-control" formControlName="lastUpdated">
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="applicationForm.invalid">Update Status</button>
+  </form>
+</div>
+
+
+
+    </div>
+</section>

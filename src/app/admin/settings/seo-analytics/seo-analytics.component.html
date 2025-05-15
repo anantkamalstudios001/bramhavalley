@@ -1,0 +1,60 @@
+<section class="content">
+  <div class="content-block">
+    @for (breadscrum of breadscrums; track breadscrum) {
+    <div class="block-header">
+      <!-- breadcrumb -->
+      <app-breadcrumb [title]="breadscrum.title" [items]="breadscrum.items" [active_item]="breadscrum.active">
+      </app-breadcrumb>
+    </div>
+    }
+    <div class="container mt-4">
+  <h3>SEO & Analytics Settings</h3>
+  <form [formGroup]="seoAnalyticsForm" (ngSubmit)="onSubmit()">
+
+    <div class="mb-3">
+      <label class="form-label">Google Analytics Tracking ID</label>
+      <input type="text" class="form-control" formControlName="gaTrackingId" placeholder="UA-XXXXXXXXX-X" />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Google Tag Manager ID</label>
+      <input type="text" class="form-control" formControlName="gtmId" placeholder="GTM-XXXXXXX" />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Google Search Console Verification Code</label>
+      <input type="text" class="form-control" formControlName="gscCode" />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Bing Webmaster Tools Code</label>
+      <input type="text" class="form-control" formControlName="bingCode" />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Facebook Pixel ID</label>
+      <input type="text" class="form-control" formControlName="fbPixelId" />
+    </div>
+
+    <div class="form-check mb-3">
+      <input class="form-check-input" type="checkbox" formControlName="enableTracking" />
+      <label class="form-check-label">Enable Tracking Scripts</label>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Custom Head Script</label>
+      <textarea class="form-control" rows="4" formControlName="customHeadScript" placeholder="Add any head script here (e.g., GA, GTM)"></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Custom Body Script</label>
+      <textarea class="form-control" rows="4" formControlName="customBodyScript" placeholder="Add any body script here"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save Settings</button>
+  </form>
+</div>
+
+
+    </div>
+</section>

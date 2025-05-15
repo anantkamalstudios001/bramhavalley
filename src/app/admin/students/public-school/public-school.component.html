@@ -1,0 +1,51 @@
+<section class="content">
+  <div class="content-block">
+    @for (breadscrum of breadscrums; track breadscrum) {
+    <div class="block-header">
+      <!-- breadcrumb -->
+      <app-breadcrumb [title]="breadscrum.title" [items]="breadscrum.items" [active_item]="breadscrum.active">
+      </app-breadcrumb>
+    </div>
+    }
+    <div class="container mt-4">
+  <h3>Public School Program Management</h3>
+  <form [formGroup]="schoolForm" (ngSubmit)="onSubmit()">
+
+    <div class="mb-3">
+      <label class="form-label">School Name</label>
+      <input type="text" class="form-control" formControlName="schoolName" placeholder="e.g. Anant Public School" />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Description</label>
+      <textarea class="form-control" rows="4" formControlName="description" placeholder="Overview of the school, mission, vision, etc."></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Classes Offered</label>
+      <input type="text" class="form-control" formControlName="classesOffered" placeholder="e.g. Nursery to 12th" />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Facilities</label>
+      <textarea class="form-control" rows="3" formControlName="facilities" placeholder="e.g. Smart Classes, Library, Playground, Transport"></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Admission Process</label>
+      <textarea class="form-control" rows="3" formControlName="admissionProcess" placeholder="e.g. Entrance Test + Interview"></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Upload Prospectus (PDF)</label>
+      <input type="file" class="form-control" (change)="onFileSelect($event)" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save School Info</button>
+  </form>
+</div>
+
+
+
+    </div>
+</section>

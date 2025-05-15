@@ -1,0 +1,48 @@
+<section class="content">
+  <div class="content-block">
+    @for (breadscrum of breadscrums; track breadscrum) {
+    <div class="block-header">
+      <!-- breadcrumb -->
+      <app-breadcrumb [title]="breadscrum.title" [items]="breadscrum.items" [active_item]="breadscrum.active">
+      </app-breadcrumb>
+    </div>
+    }
+        <div class="container mt-4">
+  <h3>Upload Photo Gallery</h3>
+  <form [formGroup]="galleryForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+    
+    <div class="mb-3">
+      <label class="form-label">Image Title</label>
+      <input type="text" class="form-control" formControlName="title">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Description</label>
+      <textarea class="form-control" formControlName="description" rows="3"></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Event Date</label>
+      <input type="date" class="form-control" formControlName="eventDate">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Upload Photos</label>
+      <input type="file" class="form-control" (change)="onFileChange($event)" multiple accept="image/*">
+    </div>
+
+    <div class="form-check mb-3">
+      <input type="checkbox" class="form-check-input" formControlName="isActive">
+      <label class="form-check-label">Active</label>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="galleryForm.invalid || images.length === 0">
+      Upload Gallery
+    </button>
+  </form>
+</div>
+
+
+
+    </div>
+</section>

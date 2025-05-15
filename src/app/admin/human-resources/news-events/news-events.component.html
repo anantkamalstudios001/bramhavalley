@@ -1,0 +1,60 @@
+<section class="content">
+  <div class="content-block">
+    @for (breadscrum of breadscrums; track breadscrum) {
+    <div class="block-header">
+      <!-- breadcrumb -->
+      <app-breadcrumb [title]="breadscrum.title" [items]="breadscrum.items" [active_item]="breadscrum.active">
+      </app-breadcrumb>
+    </div>
+    }
+        <div class="container mt-4">
+  <h3>Post News or Event</h3>
+  <form [formGroup]="newsForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+    
+    <div class="mb-3">
+      <label class="form-label">Title</label>
+      <input type="text" class="form-control" formControlName="title">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Description</label>
+      <textarea class="form-control" formControlName="description" rows="4"></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Type</label>
+      <select class="form-select" formControlName="type">
+        <option value="">Select Type</option>
+        <option value="News">News</option>
+        <option value="Event">Event</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Event Date</label>
+      <input type="date" class="form-control" formControlName="eventDate">
+    </div>
+
+    <div class="mb-3" *ngIf="newsForm.value.type === 'Event'">
+      <label class="form-label">Location</label>
+      <input type="text" class="form-control" formControlName="location">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Attachment (optional)</label>
+      <input type="file" class="form-control" (change)="onFileSelect($event)">
+    </div>
+
+    <div class="form-check mb-3">
+      <input type="checkbox" class="form-check-input" formControlName="isActive">
+      <label class="form-check-label">Active</label>
+    </div>
+
+    <button class="btn btn-primary" type="submit" [disabled]="newsForm.invalid">Submit</button>
+  </form>
+</div>
+
+
+
+    </div>
+</section>

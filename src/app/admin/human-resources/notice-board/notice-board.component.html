@@ -1,0 +1,62 @@
+<section class="content">
+  <div class="content-block">
+    @for (breadscrum of breadscrums; track breadscrum) {
+    <div class="block-header">
+      <!-- breadcrumb -->
+      <app-breadcrumb [title]="breadscrum.title" [items]="breadscrum.items" [active_item]="breadscrum.active">
+      </app-breadcrumb>
+    </div>
+    }
+        <div class="container mt-4">
+  <h3>Post Notice</h3>
+  <form [formGroup]="noticeForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+    
+    <div class="mb-3">
+      <label class="form-label">Notice Title</label>
+      <input type="text" class="form-control" formControlName="title">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Description / Content</label>
+      <textarea class="form-control" formControlName="description" rows="4"></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Target Audience</label>
+      <select class="form-select" formControlName="audience">
+        <option value="">Select Audience</option>
+        <option value="Students">Students</option>
+        <option value="Staff">Staff</option>
+        <option value="All">All</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Start Date</label>
+      <input type="date" class="form-control" formControlName="startDate">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">End Date</label>
+      <input type="date" class="form-control" formControlName="endDate">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Attachment (optional)</label>
+      <input type="file" class="form-control" (change)="onFileChange($event)">
+    </div>
+
+    <div class="form-check mb-3">
+      <input type="checkbox" class="form-check-input" formControlName="isActive">
+      <label class="form-check-label">Active</label>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="noticeForm.invalid">Submit</button>
+  </form>
+</div>
+
+
+
+
+    </div>
+</section>

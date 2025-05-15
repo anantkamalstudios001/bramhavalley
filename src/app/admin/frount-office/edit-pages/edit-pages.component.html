@@ -1,0 +1,52 @@
+<section class="content">
+  <div class="content-block">
+    @for (breadscrum of breadscrums; track breadscrum) {
+    <div class="block-header">
+      <!-- breadcrumb -->
+      <app-breadcrumb [title]="breadscrum.title" [items]="breadscrum.items" [active_item]="breadscrum.active">
+      </app-breadcrumb>
+    </div>
+    }
+        <div class="container mt-4">
+  <h3>Edit Page Content</h3>
+  <form [formGroup]="editPageForm" (ngSubmit)="onSubmit()">
+
+    <div class="mb-3">
+      <label class="form-label">Page Title</label>
+      <input type="text" class="form-control" formControlName="title" readonly>
+    </div>
+
+    <div class="mb-3" style="display:none;">
+      <label class="form-label">Page Slug</label>
+      <input type="text" class="form-control" formControlName="slug" readonly>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Page Content</label>
+      <textarea class="form-control" formControlName="content" rows="10"></textarea>
+      <!-- For rich text, you can replace textarea with a WYSIWYG editor component -->
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Meta Title</label>
+      <input type="text" class="form-control" formControlName="metaTitle">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Meta Description</label>
+      <textarea class="form-control" formControlName="metaDescription" rows="3"></textarea>
+    </div>
+
+    <div class="form-check mb-3">
+      <input type="checkbox" class="form-check-input" formControlName="isActive">
+      <label class="form-check-label">Is Active</label>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="editPageForm.invalid">Update Page</button>
+  </form>
+</div>
+
+
+
+    </div>
+</section>

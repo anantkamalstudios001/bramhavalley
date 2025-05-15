@@ -1,0 +1,60 @@
+<section class="content">
+  <div class="content-block">
+    @for (breadscrum of breadscrums; track breadscrum) {
+    <div class="block-header">
+      <!-- breadcrumb -->
+      <app-breadcrumb [title]="breadscrum.title" [items]="breadscrum.items" [active_item]="breadscrum.active">
+      </app-breadcrumb>
+    </div>
+    }
+        <div class="container mt-4">
+  <h3>Lead Reports Filter</h3>
+  <form [formGroup]="reportForm" (ngSubmit)="onGenerateReport()">
+
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label class="form-label">From Date</label>
+        <input type="date" class="form-control" formControlName="fromDate">
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">To Date</label>
+        <input type="date" class="form-control" formControlName="toDate">
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Lead Source</label>
+      <select class="form-select" formControlName="leadSource">
+        <option value="">All Sources</option>
+        <option value="Admission">Admission</option>
+        <option value="Event">Event</option>
+        <option value="Website">Website</option>
+        <option value="Referral">Referral</option>
+        <option value="Other">Other</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Lead Status</label>
+      <select class="form-select" formControlName="leadStatus">
+        <option value="">All Statuses</option>
+        <option value="New">New</option>
+        <option value="Contacted">Contacted</option>
+        <option value="Converted">Converted</option>
+        <option value="Lost">Lost</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Assigned Staff</label>
+      <input type="text" class="form-control" formControlName="assignedStaff" placeholder="Staff name (optional)">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Generate Report</button>
+  </form>
+</div>
+
+
+
+    </div>
+</section>

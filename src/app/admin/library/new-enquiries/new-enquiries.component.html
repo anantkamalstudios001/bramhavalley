@@ -1,0 +1,67 @@
+<section class="content">
+  <div class="content-block">
+    @for (breadscrum of breadscrums; track breadscrum) {
+    <div class="block-header">
+      <!-- breadcrumb -->
+      <app-breadcrumb [title]="breadscrum.title" [items]="breadscrum.items" [active_item]="breadscrum.active">
+      </app-breadcrumb>
+    </div>
+    }
+
+    <div class="container mt-4">
+  <h3>New Enquiry</h3>
+  <form [formGroup]="enquiryForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label class="form-label">Full Name</label>
+      <input type="text" class="form-control" formControlName="name">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Email</label>
+      <input type="email" class="form-control" formControlName="email">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Phone Number</label>
+      <input type="tel" class="form-control" formControlName="phone">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Enquiry Type</label>
+      <select class="form-select" formControlName="enquiryType">
+        <option value="">Select Type</option>
+        <option value="Admission">Admission</option>
+        <option value="Course Info">Course Info</option>
+        <option value="Fee Details">Fee Details</option>
+        <option value="Other">Other</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Course Interested</label>
+      <input type="text" class="form-control" formControlName="course">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Message / Remarks</label>
+      <textarea class="form-control" rows="3" formControlName="message"></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Enquiry Date</label>
+      <input type="date" class="form-control" formControlName="enquiryDate">
+    </div>
+
+    <div class="form-check mb-3">
+      <input class="form-check-input" type="checkbox" formControlName="followUpRequired">
+      <label class="form-check-label">Follow-up Required</label>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="enquiryForm.invalid">Submit Enquiry</button>
+  </form>
+</div>
+
+
+
+    </div>
+</section>

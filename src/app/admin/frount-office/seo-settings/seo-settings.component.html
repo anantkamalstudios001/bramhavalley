@@ -1,0 +1,71 @@
+<section class="content">
+  <div class="content-block">
+    @for (breadscrum of breadscrums; track breadscrum) {
+    <div class="block-header">
+      <!-- breadcrumb -->
+      <app-breadcrumb [title]="breadscrum.title" [items]="breadscrum.items" [active_item]="breadscrum.active">
+      </app-breadcrumb>
+    </div>
+    }
+
+    <div class="container mt-4">
+  <h3>SEO Settings</h3>
+  <form [formGroup]="seoForm" (ngSubmit)="onSubmit()">
+
+    <div class="mb-3">
+      <label class="form-label">Website Title</label>
+      <input type="text" class="form-control" formControlName="title" />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Meta Description</label>
+      <textarea class="form-control" formControlName="description" rows="3"></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Meta Keywords (comma-separated)</label>
+      <input type="text" class="form-control" formControlName="keywords" />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Canonical URL</label>
+      <input type="url" class="form-control" formControlName="canonicalUrl" />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Open Graph Title</label>
+      <input type="text" class="form-control" formControlName="ogTitle" />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Open Graph Description</label>
+      <textarea class="form-control" formControlName="ogDescription" rows="2"></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Open Graph Image</label>
+      <input type="file" class="form-control" (change)="onFileChange($event)" />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Robots Directive</label>
+      <select class="form-select" formControlName="robots">
+        <option value="index, follow">index, follow</option>
+        <option value="noindex, follow">noindex, follow</option>
+        <option value="index, nofollow">index, nofollow</option>
+        <option value="noindex, nofollow">noindex, nofollow</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Google Analytics / Tracking Code</label>
+      <textarea class="form-control" formControlName="trackingCode" rows="4"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save Settings</button>
+  </form>
+</div>
+
+
+    </div>
+</section>

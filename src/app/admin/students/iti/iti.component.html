@@ -1,0 +1,50 @@
+<section class="content">
+  <div class="content-block">
+    @for (breadscrum of breadscrums; track breadscrum) {
+    <div class="block-header">
+      <!-- breadcrumb -->
+      <app-breadcrumb [title]="breadscrum.title" [items]="breadscrum.items" [active_item]="breadscrum.active">
+      </app-breadcrumb>
+    </div>
+    }
+    <div class="container mt-4">
+  <h3>ITI Program Management</h3>
+  <form [formGroup]="itiForm" (ngSubmit)="onSubmit()">
+
+    <div class="mb-3">
+      <label class="form-label">Trade Name</label>
+      <input type="text" class="form-control" formControlName="tradeName" placeholder="e.g. Electrician, Fitter, Welder" />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Trade Description</label>
+      <textarea class="form-control" rows="4" formControlName="description" placeholder="Short description of the trade"></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Eligibility Criteria</label>
+      <input type="text" class="form-control" formControlName="eligibility" placeholder="e.g. 10th Pass, 8th Pass" />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Duration</label>
+      <input type="text" class="form-control" formControlName="duration" placeholder="e.g. 1 Year, 2 Years" />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Career Opportunities</label>
+      <textarea class="form-control" rows="3" formControlName="career" placeholder="e.g. Technician, Operator, Maintenance"></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Upload Brochure (PDF)</label>
+      <input type="file" class="form-control" (change)="onFileSelect($event)" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save ITI Trade</button>
+  </form>
+</div>
+
+
+    </div>
+</section>

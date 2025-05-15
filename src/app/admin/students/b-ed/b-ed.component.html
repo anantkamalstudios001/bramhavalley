@@ -1,0 +1,51 @@
+<section class="content">
+  <div class="content-block">
+    @for (breadscrum of breadscrums; track breadscrum) {
+    <div class="block-header">
+      <!-- breadcrumb -->
+      <app-breadcrumb [title]="breadscrum.title" [items]="breadscrum.items" [active_item]="breadscrum.active">
+      </app-breadcrumb>
+    </div>
+    }
+
+    <div class="container mt-4">
+  <h3>B.Ed Program Management</h3>
+  <form [formGroup]="bedForm" (ngSubmit)="onSubmit()">
+
+    <div class="mb-3">
+      <label class="form-label">Program Title</label>
+      <input type="text" class="form-control" formControlName="title" placeholder="e.g. Bachelor of Education (B.Ed)" />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Program Description</label>
+      <textarea class="form-control" rows="4" formControlName="description" placeholder="Brief overview of the B.Ed program"></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Eligibility Criteria</label>
+      <input type="text" class="form-control" formControlName="eligibility" placeholder="e.g. Graduation with 50% marks" />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Duration</label>
+      <input type="text" class="form-control" formControlName="duration" placeholder="e.g. 2 Years" />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Career Opportunities</label>
+      <textarea class="form-control" rows="3" formControlName="career" placeholder="e.g. Teacher, Counselor, Education Coordinator"></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Upload Brochure (PDF)</label>
+      <input type="file" class="form-control" (change)="onFileSelect($event)" />
+    </div>
+
+    <button type="submit" class="btn btn-success">Save B.Ed Program</button>
+  </form>
+</div>
+
+
+    </div>
+</section>

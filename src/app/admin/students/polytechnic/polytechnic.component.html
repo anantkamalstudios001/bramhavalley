@@ -1,0 +1,56 @@
+<section class="content">
+  <div class="content-block">
+    @for (breadscrum of breadscrums; track breadscrum) {
+    <div class="block-header">
+      <!-- breadcrumb -->
+      <app-breadcrumb [title]="breadscrum.title" [items]="breadscrum.items" [active_item]="breadscrum.active">
+      </app-breadcrumb>
+    </div>
+    }
+        <div class="container mt-4">
+  <h3>Polytechnic Program Management</h3>
+  <form [formGroup]="polytechnicForm" (ngSubmit)="onSubmit()">
+
+    <div class="mb-3">
+      <label class="form-label">Program Title</label>
+      <input type="text" class="form-control" formControlName="title" placeholder="e.g. Diploma in Mechanical Engineering" />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Program Description</label>
+      <textarea class="form-control" rows="4" formControlName="description" placeholder="Brief about the polytechnic program"></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Departments/Branches</label>
+      <input type="text" class="form-control" formControlName="branches" placeholder="e.g. Civil, Mechanical, Electrical" />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Eligibility Criteria</label>
+      <input type="text" class="form-control" formControlName="eligibility" placeholder="e.g. 10th Pass with minimum 50%" />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Duration</label>
+      <input type="text" class="form-control" formControlName="duration" placeholder="e.g. 3 Years" />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Career Scope</label>
+      <textarea class="form-control" rows="3" formControlName="career" placeholder="e.g. Junior Engineer, Technician..."></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Upload Brochure (PDF)</label>
+      <input type="file" class="form-control" (change)="onFileSelect($event)" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save Polytechnic Program</button>
+  </form>
+</div>
+
+
+
+    </div>
+</section>

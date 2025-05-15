@@ -1,0 +1,64 @@
+<section class="content">
+  <div class="content-block">
+    @for (breadscrum of breadscrums; track breadscrum) {
+    <div class="block-header">
+      <!-- breadcrumb -->
+      <app-breadcrumb [title]="breadscrum.title" [items]="breadscrum.items" [active_item]="breadscrum.active">
+      </app-breadcrumb>
+    </div>
+    }
+        <div class="container mt-4">
+  <h3>Application Reports Filter</h3>
+  <form [formGroup]="appReportForm" (ngSubmit)="onGenerateReport()">
+
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label class="form-label">From Date</label>
+        <input type="date" class="form-control" formControlName="fromDate">
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">To Date</label>
+        <input type="date" class="form-control" formControlName="toDate">
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Program Applied For</label>
+      <select class="form-select" formControlName="program">
+        <option value="">All Programs</option>
+        <option value="Engineering">Engineering</option>
+        <option value="Science">Science</option>
+        <option value="Arts">Arts</option>
+        <option value="Commerce">Commerce</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Application Status</label>
+      <select class="form-select" formControlName="status">
+        <option value="">All Statuses</option>
+        <option value="Pending">Pending</option>
+        <option value="Approved">Approved</option>
+        <option value="Rejected">Rejected</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Application Source</label>
+      <select class="form-select" formControlName="source">
+        <option value="">All Sources</option>
+        <option value="Online">Online</option>
+        <option value="Walk-in">Walk-in</option>
+        <option value="Referral">Referral</option>
+        <option value="Other">Other</option>
+      </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Generate Report</button>
+  </form>
+</div>
+
+
+
+    </div>
+</section>
