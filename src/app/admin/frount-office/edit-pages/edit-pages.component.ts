@@ -33,9 +33,9 @@ export class EditPagesComponent {
   editPageForm!: FormGroup;
    breadscrums = [
     {
-      title: 'Add Staff',
-      items: ['Staff'],
-      active: 'Add Staff',
+      title: 'Edit Pages',
+      items: ['Brahmavalley Main'],
+      active: 'Edit Pages',
     },
   ];
   constructor(private fb: FormBuilder) {}

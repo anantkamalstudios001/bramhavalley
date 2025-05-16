@@ -31,9 +31,9 @@ export class MbaComponent {
   mbaForm!: FormGroup;
   breadscrums = [
     {
-      title: 'Add Staff',
-      items: ['Staff'],
-      active: 'Add Staff',
+      title: 'MBA',
+      items: ['Institutes'],
+      active: 'MBA',
     },
   ];
   selectedBrochure: File | null = null;

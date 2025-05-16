@@ -1,19 +1,6 @@
 {
   "routes": [
     {
-      "path": "",
-      "title": "MENUITEMS.MAIN.TEXT",
-      "iconType": "",
-      "icon": "",
-      "class": "",
-      "groupTitle": true,
-      "badge": "",
-      "badgeClass": "",
-      "role": ["All"],
-      "submenu": []
-    },
-
-    {
       "path": "admin/dashboard/website-management",
       "title": "MENUITEMS.DASHBOARD.TEXT",
       "iconType": "",
@@ -554,19 +541,6 @@
       "badge": "",
       "badgeClass": "",
       "role": ["Student"],
-      "submenu": []
-    },
-
-    {
-      "path": "",
-      "title": "MENUITEMS.APPS.TEXT",
-      "iconType": "",
-      "icon": "",
-      "class": "",
-      "groupTitle": true,
-      "badge": "",
-      "badgeClass": "",
-      "role": ["All"],
       "submenu": []
     },
     {

@@ -31,9 +31,9 @@ export class ITIComponent {
  itiForm!: FormGroup;
  breadscrums = [
     {
-      title: 'Add Staff',
-      items: ['Staff'],
-      active: 'Add Staff',
+      title: 'ITI',
+      items: ['Institutes'],
+      active: 'ITI',
     },
   ]; 
   selectedBrochure: File | null = null;

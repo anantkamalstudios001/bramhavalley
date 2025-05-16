@@ -31,9 +31,9 @@ export class QuickLinksManagerComponent {
 linkForm!: FormGroup;
 breadscrums = [
     {
-      title: 'Add Staff',
-      items: ['Staff'],
-      active: 'Add Staff',
+      title: 'Quick Links Manager',
+      items: ['Brahmavalley Main'],
+      active: 'Quick Links Manager',
     },
   ];
   constructor(private fb: FormBuilder) {}

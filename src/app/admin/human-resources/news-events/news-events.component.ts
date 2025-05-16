@@ -30,9 +30,9 @@ export class NewsEventsComponent {
   newsForm!: FormGroup;
   breadscrums = [
     {
-      title: 'Add Staff',
-      items: ['Staff'],
-      active: 'Add Staff',
+      title: 'News & Events',
+      items: ['CMS Manager'],
+      active: 'News & Events',
     },
   ];
   selectedFile: File | null = null;

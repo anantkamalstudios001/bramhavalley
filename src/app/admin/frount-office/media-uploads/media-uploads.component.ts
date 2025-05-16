@@ -31,9 +31,9 @@ export class MediaUploadsComponent {
   mediaForm!: FormGroup;
    breadscrums = [
     {
-      title: 'Add Staff',
-      items: ['Staff'],
-      active: 'Add Staff',
+      title: 'Media uploads',
+      items: ['Brahmavalley Main'],
+      active: 'Media uploads',
     },
   ];
   selectedFiles: File[] = [];

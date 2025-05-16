@@ -31,9 +31,9 @@ export class PolytechnicComponent {
 polytechnicForm!: FormGroup;
 breadscrums = [
     {
-      title: 'Add Staff',
-      items: ['Staff'],
-      active: 'Add Staff',
+      title: 'Polytechnic',
+      items: ['Institutes'],
+      active: 'Polytechnic',
     },
   ]; 
   selectedBrochure: File | null = null;

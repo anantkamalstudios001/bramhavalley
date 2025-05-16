@@ -30,9 +30,9 @@ export class NewEnquiriesComponent {
    enquiryForm!: FormGroup;
     breadscrums = [
     {
-      title: 'Add Staff',
-      items: ['Staff'],
-      active: 'Add Staff',
+      title: 'New Enquiries',
+      items: ['Admission Enquiries'],
+      active: 'New Enquiries',
     },
   ];
   constructor(private fb: FormBuilder) {}

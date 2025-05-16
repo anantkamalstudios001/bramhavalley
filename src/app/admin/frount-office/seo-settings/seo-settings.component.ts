@@ -31,9 +31,9 @@ export class SeoSettingsComponent {
   seoForm!: FormGroup;
   breadscrums = [
     {
-      title: 'Add Staff',
-      items: ['Staff'],
-      active: 'Add Staff',
+      title: 'SEO Setting',
+      items: ['Brahmavalley Main'],
+      active: 'SEO Setting',
     },
   ];
   ogImageFile: File | null = null;

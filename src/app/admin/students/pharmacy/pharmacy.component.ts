@@ -31,9 +31,9 @@ export class PharmacyComponent {
  pharmacyForm!: FormGroup;
  breadscrums = [
     {
-      title: 'Add Staff',
-      items: ['Staff'],
-      active: 'Add Staff',
+      title: 'Pharmacy',
+      items: ['Institutes'],
+      active: 'Pharmacy',
     },
   ];
   selectedBrochure: File | null = null;

@@ -30,9 +30,9 @@ export class ApplicationReportsComponent {
   appReportForm!: FormGroup;
   breadscrums = [
     {
-      title: 'Add Staff',
-      items: ['Staff'],
-      active: 'Add Staff',
+      title: 'Application Reports',
+      items: ['Reports'],
+      active: 'Application Reports',
     },
   ];
   constructor(private fb: FormBuilder) {}

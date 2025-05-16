@@ -30,9 +30,9 @@ export class ApplicationStatusComponent {
    applicationForm!: FormGroup;
     breadscrums = [
     {
-      title: 'Add Staff',
-      items: ['Staff'],
-      active: 'Add Staff',
+      title: 'Application Status',
+      items: ['Admission Enquiries'],
+      active: 'Application Status',
     },
   ];
   constructor(private fb: FormBuilder) {}

@@ -30,9 +30,9 @@ export class NoticeBoardComponent {
   noticeForm!: FormGroup;
   breadscrums = [
     {
-      title: 'Add Staff',
-      items: ['Staff'],
-      active: 'Add Staff',
+      title: 'Notice Board',
+      items: ['CMS Manager'],
+      active: 'Notice Board',
     },
   ];
   selectedFile: File | null = null;

@@ -31,9 +31,9 @@ export class AdminUsersComponent {
 
    breadscrums = [
     {
-      title: 'Add Staff',
-      items: ['Staff'],
-      active: 'Add Staff',
+      title: 'Admin Users',
+      items: ['User Management'],
+      active: 'Admin Users',
     },
   ];
 

@@ -30,9 +30,9 @@ export class WebsiteSettingComponent {
    settingsForm!: FormGroup;
    breadscrums = [
     {
-      title: 'Add Staff',
-      items: ['Staff'],
-      active: 'Add Staff',
+      title: 'Website Settings',
+      items: ['Settings'],
+      active: 'Website Settings',
     },
   ];
   logoFile: File | null = null;

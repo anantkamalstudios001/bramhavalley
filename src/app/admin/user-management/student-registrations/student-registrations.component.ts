@@ -30,9 +30,9 @@ export class StudentRegistrationsComponent {
    studentForm!: FormGroup;
      breadscrums = [
     {
-      title: 'Add Staff',
-      items: ['Staff'],
-      active: 'Add Staff',
+      title: 'Student Registration',
+      items: ['User Management'],
+      active: 'Student Registration',
     },
   ];
   constructor(private fb: FormBuilder) {}

@@ -31,9 +31,9 @@ export class BackupRestoreComponent {
   selectedFile: File | null = null;
   breadscrums = [
     {
-      title: 'Add Staff',
-      items: ['Staff'],
-      active: 'Add Staff',
+      title: 'backup & Restore',
+      items: ['Settings'],
+      active: 'backup & Restore',
     },
   ];
   ngOnInit(): void {

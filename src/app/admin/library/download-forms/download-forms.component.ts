@@ -30,9 +30,9 @@ export class DownloadFormsComponent {
    downloadForm!: FormGroup;
    breadscrums = [
     {
-      title: 'Add Staff',
-      items: ['Staff'],
-      active: 'Add Staff',
+      title: 'Download Forms',
+      items: ['Admission Enquiries'],
+      active: 'Download Forms',
     },
   ];
   selectedFile: File | null = null;

@@ -30,9 +30,9 @@ export class SeoAnalyticsComponent {
   seoAnalyticsForm!: FormGroup;
   breadscrums = [
     {
-      title: 'Add Staff',
-      items: ['Staff'],
-      active: 'Add Staff',
+      title: 'Settings Analytics',
+      items: ['Settings'],
+      active: 'Settings Analytics',
     },
   ];
   constructor(private fb: FormBuilder) {}

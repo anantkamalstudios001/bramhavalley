@@ -31,9 +31,9 @@ export class FacultyStaffUsersComponent {
 
     breadscrums = [
     {
-      title: 'Add Staff',
-      items: ['Staff'],
-      active: 'Add Staff',
+      title: 'Faculty Staff-Users',
+      items: ['User Management'],
+      active: 'Faculty Staff-Users',
     },
   ];
   constructor(private fb: FormBuilder) {}

@@ -30,9 +30,9 @@ export class EngineeringComponent {
   engineeringForm!: FormGroup;
   breadscrums = [
     {
-      title: 'Add Staff',
-      items: ['Staff'],
-      active: 'Add Staff',
+      title: 'Engineering',
+      items: ['Institutes'],
+      active: 'Engineering',
     },
   ];
   selectedBrochure: File | null = null;

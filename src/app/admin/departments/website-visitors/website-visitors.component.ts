@@ -31,9 +31,9 @@ export class WebsiteVisitorsComponent {
   visitorForm!: FormGroup;
    breadscrums = [
     {
-      title: 'Add Staff',
-      items: ['Staff'],
-      active: 'Add Staff',
+      title: 'Website Visitors',
+      items: ['Reports'],
+      active: 'Website Visitors',
     },
   ];
   constructor(private fb: FormBuilder) {}

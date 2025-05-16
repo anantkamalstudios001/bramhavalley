@@ -31,9 +31,9 @@ export class PublicSchoolComponent {
  schoolForm!: FormGroup;
  breadscrums = [
     {
-      title: 'Add Staff',
-      items: ['Staff'],
-      active: 'Add Staff',
+      title: 'Public School',
+      items: ['Institutes'],
+      active: 'Public School',
     },
   ]; 
   selectedFile: File | null = null;

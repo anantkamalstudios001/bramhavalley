@@ -30,9 +30,9 @@ export class PhotoGalleryComponent {
   galleryForm!: FormGroup;
    breadscrums = [
     {
-      title: 'Add Staff',
-      items: ['Staff'],
-      active: 'Add Staff',
+      title: 'Photo Gallery',
+      items: ['CMS Manager'],
+      active: 'Photo Gallery',
     },
   ];
   images: File[] = [];

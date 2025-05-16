@@ -31,9 +31,9 @@ export class BEdComponent {
  bedForm!: FormGroup;
  breadscrums = [
     {
-      title: 'Add Staff',
-      items: ['Staff'],
-      active: 'Add Staff',
+      title: 'B-Ed',
+      items: ['Institutes'],
+      active: 'B-Ed',
     },
   ]; 
   selectedBrochure: File | null = null;
