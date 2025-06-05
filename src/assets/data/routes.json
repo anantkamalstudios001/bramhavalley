@@ -441,103 +441,260 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     {
-      "path": "",
-      "title": "MENUITEMS.INSTITUTES.TEXT",
-      "iconType": "material-icons-outlined",
-      "icon": "people_alt",
-      "class": "menu-toggle",
-      "groupTitle": false,
-      "badge": "",
-      "badgeClass": "",
-      "role": ["Admin"],
-      "submenu": [
-        {
-          "path": "/admin/institutes/MBA",
-          "title": "MENUITEMS.INSTITUTES.LIST.MBA",
-          "iconType": "",
-          "icon": "",
-          "class": "ml-menu",
-          "groupTitle": false,
-          "badge": "",
-          "badgeClass": "",
-          "role": [""],
-          "submenu": []
-        },
-        {
-          "path": "/admin/institutes/engineering",
-          "title": "MENUITEMS.INSTITUTES.LIST.ENGINEERING",
-          "iconType": "",
-          "icon": "",
-          "class": "ml-menu",
-          "groupTitle": false,
-          "badge": "",
-          "badgeClass": "",
-          "role": [""],
-          "submenu": []
-        },
-        {
-          "path": "/admin/institutes/pharmacy",
-          "title": "MENUITEMS.INSTITUTES.LIST.PHARMACY",
-          "iconType": "",
-          "icon": "",
-          "class": "ml-menu",
-          "groupTitle": false,
-          "badge": "",
-          "badgeClass": "",
-          "role": [""],
-          "submenu": []
-        },
-        {
-          "path": "/admin/institutes/polytechnic",
-          "title": "MENUITEMS.INSTITUTES.LIST.POLYTECHNIC",
-          "iconType": "",
-          "icon": "",
-          "class": "ml-menu",
-          "groupTitle": false,
-          "badge": "",
-          "badgeClass": "",
-          "role": [""],
-          "submenu": []
-        },
-        {
-          "path": "/admin/institutes/ITI",
-          "title": "MENUITEMS.INSTITUTES.LIST.ITI",
-          "iconType": "",
-          "icon": "",
-          "class": "ml-menu",
-          "groupTitle": false,
-          "badge": "",
-          "badgeClass": "",
-          "role": [""],
-          "submenu": []
-        },
-        {
-          "path": "/admin/institutes/public-school",
-          "title": "MENUITEMS.INSTITUTES.LIST.PUBLIC-SCHOOL",
-          "iconType": "",
-          "icon": "",
-          "class": "ml-menu",
-          "groupTitle": false,
-          "badge": "",
-          "badgeClass": "",
-          "role": [""],
-          "submenu": []
-        },
-        {
-          "path": "/admin/institutes/b-ed",
-          "title": "MENUITEMS.INSTITUTES.LIST.B-ED",
-          "iconType": "",
-          "icon": "",
-          "class": "ml-menu",
-          "groupTitle": false,
-          "badge": "",
-          "badgeClass": "",
-          "role": [""],
-          "submenu": []
-        }
-      ]
-    },
+    "path": "",
+    "title": "MENUITEMS.ACADEMICS.TEXT",
+    "iconType": "material-icons-outlined",
+    "icon": "people_alt",
+    "class": "menu-toggle",
+    "groupTitle": false,
+    "badge": "",
+    "badgeClass": "",
+    "role": ["Admin"],
+    "submenu": [
+      {
+        "path": "",
+        "title": "MENUITEMS.ACADEMICS.LIST.MANAGE-ACADEMICS-OVERVIEW",
+        "iconType": "",
+        "icon": "",
+        "class": "ml-menu",
+        "groupTitle": false,
+        "badge": "",
+        "badgeClass": "",
+        "role": [""],
+        "submenu": [
+          {
+            "path": "/admin/academics/add-academics-overview",
+            "title": "MENUITEMS.ACADEMICS.LIST.SUBLIST.ADD-ACADEMICS-OVERVIEW",
+            "iconType": "",
+            "icon": "",
+            "class": "",
+            "groupTitle": false,
+            "badge": "",
+            "badgeClass": "",
+            "role": [""],
+            "submenu": []
+          },
+          {
+            "path": "/admin/academics/manage-academics-overview",
+            "title": "MENUITEMS.ACADEMICS.LIST.SUBLIST.MANAGE-ACADEMICS-OVERVIEW",
+            "iconType": "",
+            "icon": "",
+            "class": "",
+            "groupTitle": false,
+            "badge": "",
+            "badgeClass": "",
+            "role": [""],
+            "submenu": []
+          }
+        ]
+      },
+      {
+        "path": "",
+        "title": "MENUITEMS.ACADEMICS.LIST.MANAGE-ACADEMIC-CALENDER",
+        "iconType": "",
+        "icon": "",
+        "class": "ml-menu",
+        "groupTitle": false,
+        "badge": "",
+        "badgeClass": "",
+        "role": [""],
+        "submenu": [
+          {
+            "path": "/admin/academics/add-academic-calender",
+            "title": "MENUITEMS.ACADEMICS.LIST.SUBLIST.ADD-ACADEMIC-CALENDER",
+            "iconType": "",
+            "icon": "",
+            "class": "",
+            "groupTitle": false,
+            "badge": "",
+            "badgeClass": "",
+            "role": [""],
+            "submenu": []
+          },
+          {
+            "path": "/admin/academics/manage-academic-calender",
+            "title": "MENUITEMS.ACADEMICS.LIST.SUBLIST.MANAGE-ACADEMIC-CALENDER",
+            "iconType": "",
+            "icon": "",
+            "class": "",
+            "groupTitle": false,
+            "badge": "",
+            "badgeClass": "",
+            "role": [""],
+            "submenu": []
+          }
+        ]
+      },
+      {
+        "path": "",
+        "title": "MENUITEMS.ACADEMICS.LIST.MANAGE-LIST-OF-HOLIDAYS",
+        "iconType": "",
+        "icon": "",
+        "class": "ml-menu",
+        "groupTitle": false,
+        "badge": "",
+        "badgeClass": "",
+        "role": [""],
+        "submenu": [
+          {
+            "path": "/admin/academics/add-list-of-holidays",
+            "title": "MENUITEMS.ACADEMICS.LIST.SUBLIST.ADD-LIST-OF-HOLIDAYS",
+            "iconType": "",
+            "icon": "",
+            "class": "",
+            "groupTitle": false,
+            "badge": "",
+            "badgeClass": "",
+            "role": [""],
+            "submenu": []
+          },
+          {
+            "path": "/admin/academics/manage-list-of-holidays",
+            "title": "MENUITEMS.ACADEMICS.LIST.SUBLIST.MANAGE-LIST-OF-HOLIDAYS",
+            "iconType": "",
+            "icon": "",
+            "class": "",
+            "groupTitle": false,
+            "badge": "",
+            "badgeClass": "",
+            "role": [""],
+            "submenu": []
+          }
+        ]
+      },
+      {
+        "path": "",
+        "title": "MENUITEMS.ACADEMICS.LIST.MANAGE-ACADEMICS-REGULATION",
+        "iconType": "",
+        "icon": "",
+        "class": "ml-menu",
+        "groupTitle": false,
+        "badge": "",
+        "badgeClass": "",
+        "role": [""],
+        "submenu": [
+          {
+            "path": "/admin/academics/add-academics-regulation",
+            "title": "MENUITEMS.ACADEMICS.LIST.SUBLIST.ADD-ACADEMICS-REGULATION",
+            "iconType": "",
+            "icon": "",
+            "class": "",
+            "groupTitle": false,
+            "badge": "",
+            "badgeClass": "",
+            "role": [""],
+            "submenu": []
+          },
+          {
+            "path": "/admin/academics/manage-academics-regulation",
+            "title": "MENUITEMS.ACADEMICS.LIST.SUBLIST.MANAGE-ACADEMICS-REGULATION",
+            "iconType": "",
+            "icon": "",
+            "class": "",
+            "groupTitle": false,
+            "badge": "",
+            "badgeClass": "",
+            "role": [""],
+            "submenu": []
+          }
+        ]
+      }
+    ]
+  }
+,
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     {
       "path": "",
       "title": "MENUITEMS.USER-MANAGEMENT.TEXT",

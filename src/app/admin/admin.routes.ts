@@ -22,7 +22,7 @@ export const ADMIN_ROUTE: Route[] = [
       ),
   },
   {
-    path: 'institutes',
+    path: 'academics',
     loadChildren: () =>
       import('./students/admin-students.routes').then(
         (m) => m.ADMIN_STUDENT_ROUTE

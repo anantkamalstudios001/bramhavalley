@@ -57,19 +57,89 @@
   }
 }
 ,
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"ACADEMICS": {
+  "TEXT": "Academics",
+  "LIST": {
+    "MANAGE-ACADEMICS-OVERVIEW": "Academics Overview",
+    "MANAGE-ACADEMIC-CALENDER": "Academic Calender",
+    "MANAGE-LIST-OF-HOLIDAYS": "List of Holidays",
+    "MANAGE-ACADEMICS-REGULATION": "Academics Regulation",
+    "SUBLIST": {
+      "ADD-ACADEMICS-OVERVIEW": "Add Academics Overview",
+      "MANAGE-ACADEMICS-OVERVIEW": "Manage Academics Overview",
+      "ADD-ACADEMIC-CALENDER": "Add Academic Calender",
+      "MANAGE-ACADEMIC-CALENDER": "Manage Academic Calender",
+      "ADD-LIST-OF-HOLIDAYS": "Add List of Holidays",
+      "MANAGE-LIST-OF-HOLIDAYS": "Manage List of Holidays",
+      "ADD-ACADEMICS-REGULATION": "Add Academics Regulation",
+      "MANAGE-ACADEMICS-REGULATION": "Manage Academics Regulation"
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+,
   
-    "INSTITUTES": {
-      "TEXT": "Institutes",
-      "LIST": {
-        "MBA": "MBA",
-        "ENGINEERING": "Engineering",
-        "PHARMACY": "Pharmacy",
-        "POLYTECHNIC": "Polytechnic",
-        "ITI": "ITI",
-        "PUBLIC-SCHOOL" : "Public School",
-        "B-ED" : "B.Ed"
-      }
-    },
     "USER-MANAGEMENT": {
       "TEXT": "User Management",
       "LIST": {
