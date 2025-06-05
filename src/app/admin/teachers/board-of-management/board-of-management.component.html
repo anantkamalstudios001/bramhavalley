@@ -1,0 +1,119 @@
+<section class="content">
+  <div class="content-block">
+    <div class="block-header" *ngFor="let breadscrumb of breadscrums; trackBy: trackByFn">
+      <app-breadcrumb
+        [title]="breadscrumb.title"
+        [items]="breadscrumb.items"
+        [active_item]="breadscrumb.active"
+      ></app-breadcrumb>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="tabbable-line">
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="card">
+                <div class="materialTableHeader">
+                  <div class="left"></div>
+                  <div class="right">
+                    <ul class="tbl-export-btn"></ul>
+                  </div>
+                </div>
+
+                <div class="body overflow-auto">
+                  <div class="responsive_table">
+                    <table
+                      mat-table
+                      [dataSource]="dataSource"
+                      matSort
+                      class="mat-cell advance-table"
+                    >
+                      <!-- Select Checkbox Column -->
+                      <ng-container matColumnDef="select">
+                        <mat-header-cell *matHeaderCellDef>
+                          <mat-checkbox
+                            (change)="masterToggle()"
+                            [checked]="isAllSelected()"
+                            [indeterminate]="selection.hasValue() && !isAllSelected()"
+                            class="tbl-checkbox"
+                          ></mat-checkbox>
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let row">
+                          <mat-checkbox
+                            (click)="$event.stopPropagation()"
+                            (change)="selection.toggle(row)"
+                            [checked]="selection.isSelected(row)"
+                            class="tbl-checkbox"
+                          ></mat-checkbox>
+                        </mat-cell>
+                      </ng-container>
+
+                      <!-- Paragraph Column -->
+                      <ng-container matColumnDef="paragraph">
+                        <mat-header-cell *matHeaderCellDef>Paragraph</mat-header-cell>
+                        <mat-cell *matCellDef="let row">{{ row.paragraph }}</mat-cell>
+                      </ng-container>
+
+                      <!-- Actions Column -->
+                      <ng-container matColumnDef="actions"> 
+                        <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
+                        <mat-cell *matCellDef="let row">
+                          <button mat-button color="primary" (click)="openEditModal(row)">Edit</button>
+                          <button mat-button color="warn" (click)="deleteItem(row._id)">Delete</button>
+                        </mat-cell>
+                      </ng-container>
+
+                      <!-- Header and Row -->
+                      <mat-header-row *matHeaderRowDef="['select', 'paragraph', 'actions']"></mat-header-row>
+                      <mat-row *matRowDef="let row; columns: ['select', 'paragraph', 'actions']"></mat-row>
+                    </table>
+
+                    <!-- Loading Spinner -->
+                    <div *ngIf="isLoading" class="tbl-spinner">
+                      <mat-progress-spinner color="primary" [diameter]="40" mode="indeterminate"></mat-progress-spinner>
+                    </div>
+
+                    <!-- No Results -->
+                    <div *ngIf="!isLoading && dataSource?.filteredData?.length === 0" class="no-results">
+                      No results found.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bootstrap Edit Modal -->
+      <div
+        class="modal fade"
+        id="editModal"
+        tabindex="-1"
+        aria-labelledby="editModalLabel"
+        aria-hidden="true"
+        #editModal
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="editModalLabel">Edit Paragraph</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="cancelEdit()"></button>
+            </div>
+            <div class="modal-body">
+              <div class="mb-3">
+                <label for="paragraphInput" class="form-label">Paragraph:</label>
+                <textarea id="paragraphInput" class="form-control" [(ngModel)]="editData.paragraph"></textarea>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" (click)="saveEdit()" data-bs-dismiss="modal">Save Changes</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="cancelEdit()">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

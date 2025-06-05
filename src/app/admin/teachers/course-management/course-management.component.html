@@ -1,5 +1,47 @@
 <section class="content">
-    <div class="content-block">
-        <h1>course-management</h1>
+  <div class="content-block">
+    @for (breadscrum of breadscrums; track breadscrum) {
+    <div class="block-header">
+      <!-- breadcrumb -->
+      <app-breadcrumb [title]="breadscrum.title" [items]="breadscrum.items" [active_item]="breadscrum.active">
+      </app-breadcrumb>
     </div>
+    }
+    <!-- Your content goes here  -->
+
+  <!-- Who We Are -->
+  <hr>
+    <div class="container">
+    <h3 class="text-center">Manage Who We Are section</h3>
+<form [formGroup]="whyWeAreForm" (ngSubmit)="submitWhyWeAreForm()" enctype="multipart/form-data">
+  <div class="mb-3">
+    <label>Upload Why We Are Image</label>
+    <input type="file" (change)="onWhyWeAreImageSelected($event)" class="form-control">
+  </div>
+
+  <div class="mb-3">
+    <label>Description Paragraph</label>
+    <textarea formControlName="description" class="form-control" placeholder="Enter description"></textarea>
+  </div>
+
+  <div class="mb-3">
+    <button type="submit" class="btn btn-success">Submit</button>
+    <button type="button" class="btn btn-danger" (click)="whyWeAreForm.reset(); selectedWhyWeAreImage = null">Cancel</button>
+  </div>
+</form>
+
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+  </div>
 </section>

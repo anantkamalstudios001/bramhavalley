@@ -1,0 +1,52 @@
+<section class="content">
+  <div class="content-block">
+    @for (breadscrum of breadscrums; track trackByIndex) {
+      <div class="block-header">
+        <app-breadcrumb 
+          [title]="breadscrum.title" 
+          [items]="breadscrum.items" 
+          [active_item]="breadscrum.active">
+        </app-breadcrumb>
+      </div>
+    }
+
+    <hr />
+    <div class="container py-4">
+      <h3 class="text-center mb-4">Manage Vision & Mission Section</h3>
+
+      <form [formGroup]="vmForm" (ngSubmit)="submitForm()">
+
+        <!-- Vision -->
+        <h4>Vision</h4>
+        <div class="mb-3">
+          <input formControlName="visionTitle" class="form-control" placeholder="Enter Vision Title (h5)" />
+        </div>
+        <div class="mb-4">
+          <textarea formControlName="visionParagraph" rows="3" class="form-control" placeholder="Enter Vision Paragraph (p)"></textarea>
+        </div>
+
+        <!-- Mission -->
+        <h4>Mission</h4>
+        <div class="input-group mb-3">
+          <input formControlName="newMission" class="form-control w-100" placeholder="Add Mission Paragraph" />
+          <button type="button" class="btn btn-primary"
+            (click)="addMission()">Add</button>
+        </div>
+
+        <ul class="list-group mb-4" formArrayName="mission">
+          <li *ngFor="let m of missionArray.controls; let i = index"
+              class="list-group-item d-flex justify-content-between align-items-center">
+            <span>{{ m.value }}</span>
+            <button type="button" class="btn btn-sm btn-danger" (click)="removeMission(i)">Remove</button>
+          </li>
+        </ul>
+
+        <div class="d-flex justify-content-end gap-2">
+          <button type="submit" class="btn btn-success">Submit</button>
+          <button type="button" class="btn btn-danger"
+            (click)="vmForm.reset(); missionArray.clear();">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

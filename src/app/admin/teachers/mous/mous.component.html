@@ -1,0 +1,64 @@
+<section class="content">
+  <div class="content-block">
+    @for (breadscrum of breadscrums; track breadscrum) {
+    <div class="block-header">
+      <!-- breadcrumb -->
+      <app-breadcrumb [title]="breadscrum.title" [items]="breadscrum.items" [active_item]="breadscrum.active">
+      </app-breadcrumb>
+    </div>
+    }
+    <!-- Your content goes here  -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- manage Highlight Case -->
+
+
+<hr>
+<div class="container py-4">
+  <h3 class="text-center mb-4">Add Highlight Case</h3>
+<form [formGroup]="highlightedCaseForm" (ngSubmit)="submitHighlightedCaseForm()">
+  <div class="mb-3">
+    <label>Case Heading</label>
+    <input formControlName="heading" type="text" class="form-control" placeholder="Enter case heading">
+  </div>
+
+  <div class="mb-3">
+    <label>Case Paragraph</label>
+    <textarea formControlName="paragraph" class="form-control" placeholder="Enter case details"></textarea>
+  </div>
+
+  <div class="mb-3">
+    <button type="submit" class="btn btn-success">Submit</button>
+    <button type="button" class="btn btn-danger" (click)="highlightedCaseForm.reset()">Cancel</button>
+  </div>
+</form>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+  </div>
+</section>

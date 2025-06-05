@@ -38,6 +38,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { FeatherIconsComponent } from '@shared/components/feather-icons/feather-icons.component';
 import { Direction } from '@angular/cdk/bidi';
 import { BreadcrumbComponent } from '@shared/components/breadcrumb/breadcrumb.component';
+import { MainService } from 'app/services/main.service';
 
 @Component({
     selector: 'app-all-teachers',
@@ -46,7 +47,6 @@ import { BreadcrumbComponent } from '@shared/components/breadcrumb/breadcrumb.co
     animations: [rowsAnimation],
     imports: [
         BreadcrumbComponent,
-        FeatherIconsComponent,
         CommonModule,
         MatCardModule,
         MatFormFieldModule,
@@ -61,56 +61,13 @@ import { BreadcrumbComponent } from '@shared/components/breadcrumb/breadcrumb.co
         MatCheckboxModule,
         MatTableModule,
         MatSortModule,
-        NgClass,
         MatRippleModule,
         MatProgressSpinnerModule,
         MatMenuModule,
         MatPaginatorModule,
-        DatePipe,
     ]
 })
-export class AllTeachersComponent implements OnInit, OnDestroy {
-  columnDefinitions = [
-    { def: 'select', label: 'Checkbox', type: 'check', visible: true },
-    { def: 'id', label: 'ID', type: 'text', visible: false },
-    { def: 'name', label: 'Name', type: 'text', visible: true },
-    { def: 'department', label: 'Department', type: 'text', visible: true },
-    { def: 'email', label: 'Email', type: 'email', visible: true },
-    { def: 'gender', label: 'Gender', type: 'text', visible: true },
-    { def: 'mobile', label: 'Mobile', type: 'phone', visible: true },
-    { def: 'degree', label: 'Degree', type: 'text', visible: true },
-    { def: 'address', label: 'Address', type: 'address', visible: true },
-    { def: 'hire_date', label: 'Hire Date', type: 'date', visible: true },
-    { def: 'salary', label: 'Salary', type: 'text', visible: true },
-    {
-      def: 'subject_specialization',
-      label: 'Specialization',
-      type: 'text',
-      visible: false,
-    },
-    {
-      def: 'experience_years',
-      label: 'Experience (Years)',
-      type: 'number',
-      visible: false,
-    },
-    { def: 'status', label: 'Status', type: 'text', visible: false },
-    { def: 'birthdate', label: 'Birthdate', type: 'date', visible: false },
-    { def: 'bio', label: 'Bio', type: 'text', visible: false },
-    { def: 'actions', label: 'Actions', type: 'actionBtn', visible: true },
-  ];
-
-  dataSource = new MatTableDataSource<Teachers>([]);
-  selection = new SelectionModel<Teachers>(true, []);
-  contextMenuPosition = { x: '0px', y: '0px' };
-  isLoading = true;
-  private destroy$ = new Subject<void>();
-
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
-  @ViewChild('filter') filter!: ElementRef;
-  @ViewChild(MatMenuTrigger) contextMenu?: MatMenuTrigger;
-
+export class AllTeachersComponent implements OnInit {
   breadscrums = [
     {
       title: 'All Teacher',
@@ -119,199 +76,128 @@ export class AllTeachersComponent implements OnInit, OnDestroy {
     },
   ];
 
+    responseData: any;
+  // imageUrl: string = 'http://localhost:3000/uploads/aboutpresident/';
+  imageUrl: string = '/uploads/aboutpresident/';
+  showModal: boolean = false;
+  editData: any = {};
+  selectedFile: File | null = null;
+
+
+onFileSelected(event: any): void {
+  if (event.target.files && event.target.files[0]) {
+    this.selectedFile = event.target.files[0];
+  }
+}
+
+
+
   constructor(
     public httpClient: HttpClient,
     public dialog: MatDialog,
     public teachersService: TeachersService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private MainService : MainService
   ) {}
 
-  ngOnInit() {
-    this.loadData();
+
+
+  ngOnInit(): void {
+    this.getData();
   }
 
-  ngOnDestroy() {
-    this.destroy$.next();
-    this.destroy$.complete();
-  }
+  editModal( ){
 
-  refresh() {
-    this.loadData();
   }
+  // Fetch data from backend
+getData(): void {
+  this.MainService.get_president_data().subscribe((res: any[]) => {
+    console.log('API response:', res);
+    this.responseData = res;  // assign array directly
 
-  getDisplayedColumns(): string[] {
-    return this.columnDefinitions
-      .filter((cd) => cd.visible)
-      .map((cd) => cd.def);
-  }
-
-  loadData() {
-    this.teachersService.getAllTeachers().subscribe({
-      next: (data) => {
-        this.dataSource.data = data;
-        this.isLoading = false;
-        this.refreshTable();
-        this.dataSource.filterPredicate = (data: Teachers, filter: string) =>
-          Object.values(data).some((value) =>
-            value.toString().toLowerCase().includes(filter)
-          );
-      },
-      error: (err) => console.error(err),
+    this.responseData.forEach((item: any) => {
+      item.biographyParsed = item.biographyParagraphs?.length
+        ? JSON.parse(item.biographyParagraphs[0])
+        : [];
+      item.visionParsed = item.visionParagraphs?.length
+        ? JSON.parse(item.visionParagraphs[0])
+        : [];
     });
+  });
+}
+
+
+
+  // Open modal and populate editData
+openModal(modalRef: any, item: any) {
+  this.editData = {
+    ...item,
+    biographyText: item.biographyParagraphs?.join(', ') || '',
+    visionText: item.visionParagraphs?.join(', ') || ''
+  };
+  this.showModal = true;
+}
+
+
+  // Close modal
+  closeModal(): void {
+    this.showModal = false;
+    this.editData = {};
   }
 
-  private refreshTable() {
-    this.paginator.pageIndex = 0;
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+
+// In your Angular component
+
+updateItem(id:any): void {
+  const formData = new FormData();
+  formData.append('id', this.editData._id);
+  formData.append('presidentName', this.editData.presidentName);  // FIX: 'presidentName' instead of 'name'
+  formData.append('heading', this.editData.heading);
+
+  const biographyArray = this.editData.biographyText
+    .split('\n')
+    .map((p: string) => p.trim())
+    .filter((p: string) => p);
+
+  const visionArray = this.editData.visionText
+    .split('\n')
+    .map((p: string) => p.trim())
+    .filter((p: string) => p);
+
+  formData.append('biographyParagraphs', JSON.stringify(biographyArray));
+  formData.append('visionParagraphs', JSON.stringify(visionArray));
+
+  if (this.selectedFile) {
+    formData.append('image', this.selectedFile);
   }
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value
-      .trim()
-      .toLowerCase();
-    this.dataSource.filter = filterValue;
-  }
-
-  addNew() {
-    this.openDialog('add');
-  }
-
-  editCall(row: Teachers) {
-    this.openDialog('edit', row);
-  }
-
-  openDialog(action: 'add' | 'edit', data?: Teachers) {
-    let varDirection: Direction;
-    if (localStorage.getItem('isRtl') === 'true') {
-      varDirection = 'rtl';
-    } else {
-      varDirection = 'ltr';
+  this.MainService.edit_president_data(formData, id).subscribe(
+    () => {
+      this.getData();
+      this.closeModal();
+    },
+    (error) => {
+      console.error('Error updating data:', error);
     }
-    const dialogRef = this.dialog.open(TeachersFormComponent, {
-      width: '60vw',
-      maxWidth: '100vw',
-      data: { teachers: data, action },
-      direction: varDirection,
-      autoFocus: false,
-    });
+  );
+}
 
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        if (action === 'add') {
-          this.dataSource.data = [result, ...this.dataSource.data];
-        } else {
-          this.updateRecord(result);
-        }
-        this.refreshTable();
-        this.showNotification(
-          action === 'add' ? 'snackbar-success' : 'black',
-          `${action === 'add' ? 'Add' : 'Edit'} Record Successfully...!!!`,
-          'bottom',
-          'center'
-        );
-      }
-    });
-  }
 
-  private updateRecord(updatedRecord: Teachers) {
-    const index = this.dataSource.data.findIndex(
-      (record) => record.id === updatedRecord.id
-    );
-    if (index !== -1) {
-      this.dataSource.data[index] = updatedRecord;
-      this.dataSource._updateChangeSubscription();
-    }
-  }
 
-  deleteItem(row: Teachers) {
-    const dialogRef = this.dialog.open(TeachersDeleteComponent, {
-      data: row,
-    });
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        this.dataSource.data = this.dataSource.data.filter(
-          (record) => record.id !== row.id
-        );
-        this.refreshTable();
-        this.showNotification(
-          'snackbar-danger',
-          'Delete Record Successfully...!!!',
-          'bottom',
-          'center'
-        );
-      }
-    });
-  }
 
-  showNotification(
-    colorName: string,
-    text: string,
-    placementFrom: MatSnackBarVerticalPosition,
-    placementAlign: MatSnackBarHorizontalPosition
-  ) {
-    this.snackBar.open(text, '', {
-      duration: 2000,
-      verticalPosition: placementFrom,
-      horizontalPosition: placementAlign,
-      panelClass: colorName,
-    });
-  }
 
-  exportExcel() {
-    const exportData = this.dataSource.filteredData.map((x) => ({
-      Name: x.name,
-      Email: x.email,
-      Gender: x.gender,
-      Mobile: x.mobile,
-      Department: x.department,
-      Degree: x.degree,
-      Address: x.address,
-      'Hire Date': formatDate(new Date(x.hire_date), 'yyyy-MM-dd', 'en') || '',
-      Salary: x.salary,
-      Specialization: x.subject_specialization,
-      'Experience (Years)': x.experience_years,
-      Status: x.status,
-      Birthdate: formatDate(new Date(x.birthdate), 'yyyy-MM-dd', 'en') || '',
-      Bio: x.bio,
-    }));
 
-    TableExportUtil.exportToExcel(exportData, 'staff_export');
-  }
 
-  isAllSelected() {
-    return this.selection.selected.length === this.dataSource.data.length;
-  }
-
-  masterToggle() {
-    this.isAllSelected()
-      ? this.selection.clear()
-      : this.dataSource.data.forEach((row) => this.selection.select(row));
-  }
-
-  removeSelectedRows() {
-    const totalSelect = this.selection.selected.length;
-    this.dataSource.data = this.dataSource.data.filter(
-      (item) => !this.selection.selected.includes(item)
-    );
-    this.selection.clear();
-    this.showNotification(
-      'snackbar-danger',
-      `${totalSelect} Record(s) Deleted Successfully...!!!`,
-      'bottom',
-      'center'
-    );
-  }
-  onContextMenu(event: MouseEvent, item: Teachers) {
-    event.preventDefault();
-    this.contextMenuPosition = {
-      x: `${event.clientX}px`,
-      y: `${event.clientY}px`,
-    };
-    if (this.contextMenu) {
-      this.contextMenu.menuData = { item };
-      this.contextMenu.menu?.focusFirstItem('mouse');
-      this.contextMenu.openMenu();
+  // Delete item
+  deleteItem(id: string): void {
+    if (confirm('Are you sure you want to delete this entry?')) {
+      this.MainService.delete_president_data(id)
+        .subscribe({
+          next: () => this.getData(),
+          error: (err) => console.error('Error deleting item:', err)
+        });
     }
   }
+
+
 }

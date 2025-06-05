@@ -2,290 +2,151 @@
   <div class="content-block">
     @for (breadscrum of breadscrums; track breadscrum) {
     <div class="block-header">
-      <!-- breadcrumb -->
       <app-breadcrumb [title]="breadscrum.title" [items]="breadscrum.items" [active_item]="breadscrum.active">
       </app-breadcrumb>
     </div>
     }
+
     <div class="row">
-      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <div class="card">
-          <div class="materialTableHeader">
-            <div class="left">
-              <ul class="header-buttons-left ms-0">
-                <li class="tbl-title">
-                  <h2>Appointment</h2>
-                </li>
-                <li class="tbl-search-box">
-                  <label for="search-input"><i class="material-icons search-icon">search</i></label>
-                  <input placeholder="Search" type="text" #filter (keyup)="applyFilter($event)"
-                    class="browser-default search-field" aria-label="Search box">
-                </li>
-              </ul>
-            </div>
-            <div class="right">
-              <ul class="tbl-export-btn">
-                <li class="tbl-header-btn">
-                  <div class="m-l-10">
-                    <button mat-icon-button color="primary" (click)="select.open()" matTooltip="Show/Hide Column">
-                      <mat-icon>filter_list</mat-icon>
-                      <mat-select #select [(ngModel)]="filter.value" style="width: 200px; display: table;"
-                        class="column-filter">
-                        <span class="table-column-label">Show/Hide Column</span>
-                        @for (cd of columnDefinitions; track cd; let i = $index) {
-                        <div>
-                          <mat-option>
-                            <mat-checkbox (click)="$event.stopPropagation()" [(ngModel)]="cd.visible" color="primary">
-                              {{cd.label}}
-                            </mat-checkbox>
-                          </mat-option>
-                        </div>
-                        }
-                      </mat-select>
-                    </button>
+      <div class="col-md-12">
+        <div class="tabbable-line">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="card">
+                <div class="materialTableHeader">
+                  <div class="left"></div>
+                  <div class="right"></div>
+                </div>
+
+                <div class="body overflow-auto">
+                  <div class="responsive_table container mt-4">
+                    <h3>President Data</h3>
+                    <table class="table table-bordered table-striped">
+                      <thead class="thead-dark">
+                        <tr>
+                          <th>Sr No.</th>
+                          <th>President Name</th>
+                          <th>Heading</th>
+                          <th>Biography Paragraphs</th>
+                          <th>Vision Paragraphs</th>
+                          <th>Image</th>
+                          <th>Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let item of responseData; let i = index">
+                          <td>{{ i + 1 }}</td>
+                          <td>{{ item.presidentName }}</td>
+                          <td>{{ item.heading }}</td>
+
+                          <!-- Biography Paragraphs -->
+                          <td>
+                            <ul *ngIf="item.biographyParagraphs?.length > 0; else noBio; ">
+                             <li *ngFor="let para of item.biographyParsed;let i=index;">{{i+1}}-{{ para }}</li>
+                            </ul>
+                            <ng-template #noBio><span>No Biography</span></ng-template>
+                          </td>
+
+                          <!-- Vision Paragraphs -->
+                          <td>
+                            <ul *ngIf="item.visionParagraphs?.length > 0; else noVision">
+                            <li *ngFor="let v of item.visionParsed; let i=index;">{{i+1}}-{{ v }}</li>
+                            </ul>
+                            <ng-template #noVision><span>No Vision</span></ng-template>
+                          </td>
+
+                          <!-- Image -->
+                          <td>
+                            <img
+                              *ngIf="item.image"
+                              [src]="imageUrl + item.image"
+                              width="100"
+                              alt="Image"
+                            />
+                          </td>
+
+                          <!-- Actions -->
+                          <td>
+                            <button class="btn btn-sm btn-primary" (click)="openModal(editModal, item)">Edit</button>
+                            <button class="btn btn-sm btn-danger" (click)="deleteItem(item._id)">Delete</button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
                   </div>
-                </li>
-                <li class="tbl-header-btn">
-                  <div class="m-l-10">
-                    <button mat-icon-button (click)="addNew()" class="col-green" matTooltip="Add">
-                      <mat-icon>add_circle_outline</mat-icon>
-                    </button>
-                  </div>
-                </li>
-                <li class="tbl-header-btn">
-                  <div class="m-l-10">
-                    <button mat-icon-button (click)="refresh()" matTooltip="Refresh">
-                      <mat-icon>refresh</mat-icon>
-                    </button>
-                  </div>
-                </li>
-                <li class="tbl-header-btn">
-                  <div class="m-l-10" [hidden]=!selection.hasValue()>
-                    <button mat-icon-button [hidden]=!selection.hasValue() (click)="removeSelectedRows()"
-                      class="col-red" matTooltip="Delete">
-                      <mat-icon>delete_outline</mat-icon>
-                    </button>
-                  </div>
-                </li>
-                <li>
-                  <div class="export-button m-l-10">
-                    <button mat-icon-button (click)="exportExcel()" class="col-blue" matTooltip="Xlsx Download">
-                      <mat-icon class="material-icons-outlined">file_download</mat-icon>
-                    </button>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="overflow-auto">
-            <div class="responsive_table">
-              <table mat-table [dataSource]="dataSource" matSort class="mat-cell advance-table">
-                <!-- Checkbox Column -->
-                <ng-container matColumnDef="select">
-                  <mat-header-cell *matHeaderCellDef>
-                    <mat-checkbox (change)="$event ? masterToggle() : null"
-                      [checked]="selection.hasValue() && isAllSelected()" color="primary"
-                      [indeterminate]="selection.hasValue() && !isAllSelected()" [ngClass]="'tbl-checkbox'">
-                    </mat-checkbox>
-                  </mat-header-cell>
-                  <mat-cell *matCellDef="let row">
-                    <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
-                      [checked]="selection.isSelected(row)" [ngClass]="'tbl-checkbox'" color="primary">
-                    </mat-checkbox>
-                  </mat-cell>
-                </ng-container>
-                @for (column of columnDefinitions; track column) {
-                <!-- Skip rendering if column.label is "select" or "action" -->
-                @if (column.type === 'check' || column.type === 'actionBtn') {
-                <!-- Skip this column -->
-                } @else {
-                @if (column.def === 'name') {
-                <ng-container [matColumnDef]="column.def">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header>
-                    <span class="truncate-text">{{ column.label }}</span>
-                  </mat-header-cell>
-                  <mat-cell *matCellDef="let row" (contextmenu)="onContextMenu($event, row)" [matTooltip]="row.name">
-                    <span class="mobile-label">{{ column.label }}:</span>
-                    <img [src]="row.img" class="table-img" alt="image" />
-                    <span class="truncate-text">
-                      {{ row.name }}
-                    </span>
-                  </mat-cell>
-                </ng-container>
-                } @else {
-                @if (column.type === 'date') {
-                <ng-container [matColumnDef]="column.def">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header>
-                    <span class="truncate-text">{{ column.label }}</span>
-                  </mat-header-cell>
-                  <mat-cell *matCellDef="let row" (contextmenu)="onContextMenu($event, row)">
-                    <span class="mobile-label">{{ column.label }}:</span>
-                    <span class="truncate-text">
-                      {{ row[column.def] | date: 'MM/dd/yyyy' }}
-                    </span>
-                  </mat-cell>
-                </ng-container>
-                } @else {
-                @if (column.type === 'phone') {
-                <ng-container [matColumnDef]="column.def">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header>
-                    <span class="truncate-text">{{ column.label }}</span>
-                  </mat-header-cell>
-                  <mat-cell *matCellDef="let row" (contextmenu)="onContextMenu($event, row)"
-                    [matTooltip]="row[column.def]">
-                    <span class="mobile-label">{{ column.label }}:</span> <mat-icon
-                      class="tbl-icon material-icons-outlined col-green">call</mat-icon><span class="truncate-text">
-                      {{ row[column.def] }}</span></mat-cell>
-                </ng-container>
-                } @else {
-                @if (column.type === 'email') {
-                <ng-container [matColumnDef]="column.def">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header>
-                    <span class="truncate-text">{{ column.label }}</span>
-                  </mat-header-cell>
-                  <mat-cell *matCellDef="let row" (contextmenu)="onContextMenu($event, row)"
-                    [matTooltip]="row[column.def]">
-                    <span class="mobile-label">{{ column.label }}:</span> <mat-icon
-                      class="tbl-icon material-icons-outlined col-red">mail</mat-icon><span class="truncate-text">
-                      {{ row[column.def] }}</span></mat-cell>
-                </ng-container>
-                } @else {
-                @if (column.type === 'address') {
-                <ng-container [matColumnDef]="column.def">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header>
-                    <span class="truncate-text">{{ column.label }}</span>
-                  </mat-header-cell>
-                  <mat-cell *matCellDef="let row" (contextmenu)="onContextMenu($event, row)"
-                    [matTooltip]="row[column.def]">
-                    <span class="mobile-label">{{ column.label }}:</span> <mat-icon
-                      class="tbl-icon material-icons-outlined col-blue">place</mat-icon><span class="truncate-text">
-                      {{ row[column.def] }}</span></mat-cell>
-                </ng-container>
-                } @else {
-                @if (column.def === 'gender') {
-                <ng-container [matColumnDef]="column.def">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> <span class="truncate-text">{{
-                      column.label
-                      }}</span></mat-header-cell>
-                  <mat-cell *matCellDef="let row" (contextmenu)="onContextMenu($event, row)">
-                    <span class="mobile-label">{{ column.label }}:</span>
-                    <div>
-                      @switch (row.gender) {
-                      @case ('male') {
-                      <div>
-                        <span class="badge badge-solid-green">{{ row.gender }}</span>
+
+                  <!-- Modal Template -->
+                  <div *ngIf="showModal" class="modal fade show d-block" tabindex="-1" style="background-color: rgba(0, 0, 0, 0.5);">
+                    <div class="modal-dialog modal-lg modal-dialog-centered">
+                      <div class="modal-content shadow-lg">
+                        <form (ngSubmit)="updateItem(editData._id)">
+                          <div class="modal-header bg-primary text-white">
+                            <h5 class="modal-title">Edit Vice Chancellor Message</h5>
+                            <button type="button" class="btn-close btn-close-white" (click)="closeModal()" aria-label="Close"></button>
+                          </div>
+
+<div class="modal-body">
+  <div class="mb-3">
+    <label class="form-label">President Name</label>
+    <input [(ngModel)]="editData.presidentName" name="presidentName" class="form-control" placeholder="Enter name" />
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Heading</label>
+    <input [(ngModel)]="editData.heading" name="heading" class="form-control" placeholder="Enter heading" />
+  </div>
+
+  <div class="form-group">
+  <label>Current Image</label>
+  <div *ngIf="editData?.image; else noImage">
+    <img
+      [src]="imageUrl + editData.image"
+      alt="President Image"
+      width="150"
+      class="mb-2"
+    />
+  </div>
+  <ng-template #noImage>
+    <p>No image available</p>
+  </ng-template>
+</div>
+
+<!-- Upload New Image -->
+<div class="form-group">
+  <label for="image">Upload New Image</label>
+  <input
+    type="file"
+    class="form-control"
+    id="image"
+    (change)="onFileSelected($event)"
+    accept="image/*"
+  />
+</div>
+
+  <div class="mb-3">
+    <label class="form-label">Biography Paragraphs (comma separated)</label>
+    <textarea [(ngModel)]="editData.biographyText" name="biographyText" class="form-control" rows="4"></textarea>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Vision Paragraphs (comma separated)</label>
+    <textarea [(ngModel)]="editData.visionText" name="visionText" class="form-control" rows="4"></textarea>
+  </div>
+</div>
+
+
+
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" (click)="closeModal()">Cancel</button>
+                            <button type="submit" class="btn btn-success">Update</button>
+                          </div>
+                        </form>
                       </div>
-                      }
-                      @case ('female') {
-                      <div>
-                        <span class="badge badge-solid-purple">{{ row.gender }}</span>
-                      </div>
-                      }
-                      }
                     </div>
-                  </mat-cell>
-                </ng-container>
-                } @else {
-                <ng-container [matColumnDef]="column.def">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header>
-                    <span class="truncate-text">{{ column.label }}</span>
-                  </mat-header-cell>
-                  <mat-cell *matCellDef="let row" (contextmenu)="onContextMenu($event, row)">
-                    <span class="mobile-label">{{ column.label }}:</span>
-                    <span class="truncate-text">{{ row[column.def] }}</span>
-                  </mat-cell>
-                </ng-container>
-                }
-                }
-                }
-                }
-                }
-                }
-                }
-                }
-
-                <!-- actions -->
-                <ng-container matColumnDef="actions">
-                  <mat-header-cell class="pr-0" *matHeaderCellDef>Actions</mat-header-cell>
-                  <mat-cell *matCellDef="let row; let i=index;" class="pr-0">
-                    <button mat-icon-button color="accent" (click)="$event.stopPropagation()" (click)="editCall(row)"
-                      class="tbl-action-btn">
-                      <app-feather-icons [icon]="'edit'" [class]="'tbl-fav-edit'"></app-feather-icons>
-                    </button>
-                    <button mat-icon-button color="accent" (click)="$event.stopPropagation()" (click)="deleteItem(row)"
-                      class="tbl-action-btn">
-                      <app-feather-icons [icon]="'trash-2'" [class]="'tbl-fav-delete'"></app-feather-icons>
-                    </button>
-                  </mat-cell>
-                </ng-container>
-                <mat-header-row *matHeaderRowDef="getDisplayedColumns()"></mat-header-row>
-                <mat-row [@rowsAnimation]="" *matRowDef="let row; columns: getDisplayedColumns();"
-                  (click)="editCall(row)" [style.cursor]="'pointer'" matRipple>
-                </mat-row>
-              </table>
-              <!-- Loading spinner -->
-              @if (isLoading) {
-              <div class="tbl-spinner">
-                <mat-progress-spinner color="primary" [diameter]="40" mode="indeterminate">
-                </mat-progress-spinner>
+                  </div>
+                  <!-- End Modal -->
+                </div>
               </div>
-              }
-              <!-- context menu start -->
-              <div style="visibility: hidden; position: fixed" [style.left]="contextMenuPosition.x"
-                [style.top]="contextMenuPosition.y" [matMenuTriggerFor]="contextMenu">
-              </div>
-              <mat-menu #contextMenu="matMenu">
-                <ng-template matMenuContent let-item="item">
-                  <button mat-menu-item (click)="addNew()">
-                    <mat-icon>add_box</mat-icon>
-                    <span>Add Record</span>
-                  </button>
-                  <button mat-menu-item (click)="editCall(item)">
-                    <mat-icon>create</mat-icon>
-                    <span>Edit Record</span>
-                  </button>
-                  <button mat-menu-item (click)="deleteItem(item)">
-                    <mat-icon>delete</mat-icon>
-                    <span>Delete Record</span>
-                  </button>
-                  <button mat-menu-item (click)="refresh()">
-                    <mat-icon>refresh</mat-icon>
-                    <span>Refresh Record</span>
-                  </button>
-                  <button mat-menu-item disabled>
-                    <mat-icon>no_encryption</mat-icon>
-                    <span>Disable</span>
-                  </button>
-                  <button mat-menu-item [matMenuTriggerFor]="nestedmenu">
-                    <mat-icon>list_alt</mat-icon>
-                    <span> Nested Menu</span>
-                  </button>
-                </ng-template>
-              </mat-menu>
-              <mat-menu #nestedmenu="matMenu">
-                <button mat-menu-item>
-                  <mat-icon>mail_outline</mat-icon>
-                  <span>Item 1</span>
-                </button>
-                <button mat-menu-item>
-                  <mat-icon>call</mat-icon>
-                  <span>Item 2</span>
-                </button>
-                <button mat-menu-item>
-                  <mat-icon>chat</mat-icon>
-                  <span>Item 3</span>
-                </button>
-              </mat-menu>
-              <!-- context menu end -->
-
-              @if (isLoading) {
-              <div class="no-results" [style.display]="dataSource.data.length === 0 ? '' : 'none'">
-                No results
-              </div>
-              }
-              <mat-paginator #paginator [length]="dataSource.filteredData.length" [pageIndex]="0" [pageSize]="10"
-                [pageSizeOptions]="[5, 10, 25, 100]">
-              </mat-paginator>
             </div>
           </div>
         </div>

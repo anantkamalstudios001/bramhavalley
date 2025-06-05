@@ -7,44 +7,440 @@
       </app-breadcrumb>
     </div>
     }
-        <div class="container mt-4">
-  <h3>Edit Page Content</h3>
-  <form [formGroup]="editPageForm" (ngSubmit)="onSubmit()">
+        <div class="container p-3">
+          <h3 class=" text-center">Add Slider Content</h3>
+          <form [formGroup]="sliderForm" (ngSubmit)="onSubmit()" class="container mt-4">
+            <div class="mb-3">
+              <label class="form-label">Upload Image</label>
+              <input type="file" (change)="onFileChange($event)" class="form-control" />
+              <div *ngIf="imagePreview" class="mt-2">
+                <img [src]="imagePreview" class="img-fluid rounded" style="max-height: 200px;" />
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Heading</label>
+              <input type="text" formControlName="heading" class="form-control" placeholder="Enter heading" />
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Paragraph</label>
+              <textarea formControlName="paragraph" class="form-control" rows="4" placeholder="Enter paragraph"></textarea>
+            </div>
+
+             <div class="mb-3">
+              <button type="submit" class="btn btn-success">Submit</button>
+              <button class="btn btn-danger">Cancel</button>
+            </div>
+          </form>
+        </div>
+
+        
+
+        <!-- about us -->
+      <hr>
+<div class="container mt-4">
+  <form [formGroup]="aboutForm" (ngSubmit)="submitForm()" class=" p-4 rounded shadow-sm">
+    <h3 class="mb-3 text-center">About Us Section</h3>
+
+    <!-- Image Upload -->
+    <div class="mb-3">
+      <label class="form-label">Upload Image</label>
+      <input type="file" class="form-control" (change)="onFileSelected($event)" />
+    </div>
+
+    <!-- Paragraphs -->
+    <div formArrayName="paragraphs">
+      <div *ngFor="let paragraph of paragraphs.controls; let i = index" [formGroupName]="i" class="mb-2 row align-items-center">
+        <div class="col-10">
+          <input type="text" class="form-control" formControlName="paragraph" placeholder="Enter paragraph" />
+        </div>
+        <div class="col-2 text-end">
+          <button type="button" class="btn btn-danger btn-sm" (click)="removeParagraph(i)" *ngIf="paragraphs.length > 1">
+            Remove
+          </button>
+        </div>
+      </div>
+    </div>
 
     <div class="mb-3">
-      <label class="form-label">Page Title</label>
-      <input type="text" class="form-control" formControlName="title" readonly>
+      <button type="button" class="btn btn-primary btn-sm" (click)="addParagraph()">Add Paragraph</button>
     </div>
 
-    <div class="mb-3" style="display:none;">
-      <label class="form-label">Page Slug</label>
-      <input type="text" class="form-control" formControlName="slug" readonly>
-    </div>
-
-    <div class="mb-3">
-      <label class="form-label">Page Content</label>
-      <textarea class="form-control" formControlName="content" rows="10"></textarea>
-      <!-- For rich text, you can replace textarea with a WYSIWYG editor component -->
-    </div>
-
-    <div class="mb-3">
-      <label class="form-label">Meta Title</label>
-      <input type="text" class="form-control" formControlName="metaTitle">
-    </div>
-
-    <div class="mb-3">
-      <label class="form-label">Meta Description</label>
-      <textarea class="form-control" formControlName="metaDescription" rows="3"></textarea>
-    </div>
-
-    <div class="form-check mb-3">
-      <input type="checkbox" class="form-check-input" formControlName="isActive">
-      <label class="form-check-label">Is Active</label>
-    </div>
-
-    <button type="submit" class="btn btn-primary" [disabled]="editPageForm.invalid">Update Page</button>
+    <button type="submit" class="btn btn-success">Submit</button>
   </form>
 </div>
+
+
+
+      <!-- future ready programs -->
+
+       <hr>
+      <div class="container p-3">
+          <h3 class="text-center">Manage Future-Ready Programmes</h3>
+        <form [formGroup]="programForm" (ngSubmit)="Submit_programForm()" class="container mt-4">
+        <div class="mb-3">
+          <label class="form-label">Program Name</label>
+          <input type="text" formControlName="programName" class="form-control" placeholder="Enter program name" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Paragraph</label>
+          <textarea formControlName="paragraph" class="form-control" rows="4" placeholder="paragraph should be 14-15 words"></textarea>
+        </div>
+
+         <div class="mb-3">
+              <button type="submit" class="btn btn-success">Submit</button>
+              <button class="btn btn-danger">Cancel</button>
+          </div>
+      </form>
+
+      </div>
+
+
+            <!-- Campus Placements -->
+
+       <hr>
+          <div class="container p-3">
+          <h3 class="text-center">Manage Campus Placements</h3>
+            <form [formGroup]="counterForm" (ngSubmit)="onSubmit_counterForm()" class="container mt-4">
+              <div class="mb-3">
+                <label class="form-label">Number</label>
+                <input type="number" formControlName="number" class="form-control" placeholder="Enter number (e.g., 13000)" />
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Sign</label>
+                <select formControlName="sign" class="form-select">
+                  <option value="+">+</option>
+                  <option value="=">=</option>
+                  <option value="LPA">LPA</option>
+                  <option value="">None</option>
+                </select>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Text Label</label>
+                <input type="text" formControlName="label" class="form-control" placeholder="Enter label (e.g., Campus placements in 2023-24)" />
+              </div>
+
+                <div class="mb-3">
+              <button type="submit" class="btn btn-success">Submit</button>
+              <button class="btn btn-danger">Cancel</button>
+          </div>
+            </form>
+           </div>
+
+
+
+
+
+           <!-- best placements -->
+
+           <hr>
+      <div class="container p-3">
+          <h3 class="text-center">Add Best Placements Slider Image</h3>
+          <form [formGroup]="add_best_placements_Form" (ngSubmit)="Submit_best_placements_Form()" class="container mt-4">
+            <div class="mb-3">
+              <label class="form-label">Upload Image</label>
+              <input type="file" (change)="onFileChange_best_placements($event)" class="form-control" />
+              <div *ngIf="best_placements_imagePreview" class="mt-2">
+                <img [src]="best_placements_imagePreview" class="img-fluid rounded" style="max-height: 200px;" />
+              </div>
+            </div>
+            <div class="mb-3">
+              <button type="submit" class="btn btn-success">Submit</button>
+              <button class="btn btn-danger">Cancel</button>
+            </div>
+          </form>
+      </div>
+
+      
+      <!-- Add Tabs -->
+
+      <!-- <hr>
+      <div class="container p-3">
+        <h3 class="text-center">Add Tabs Content</h3>
+        <form [formGroup]="tabsForm" (ngSubmit)="submitTabs()">
+          <div formArrayName="tabs">
+            <div *ngFor="let tab of tabsForm.get('tabs')['controls']; let i = index" [formGroupName]="i" class="card mb-3 p-3">
+
+              <input formControlName="icon" placeholder="Icon class (e.g., bi bi-binoculars)" class="form-control mb-2" />
+              <input formControlName="title" placeholder="Tab Title" class="form-control mb-2" />
+              <input formControlName="subtitle" placeholder="Subtitle" class="form-control mb-2" />
+              <textarea formControlName="description" placeholder="Description" class="form-control mb-2"></textarea>
+              <input formControlName="imageUrl" placeholder="Image URL" class="form-control mb-2" />
+
+              <div formArrayName="points">
+                <div *ngFor="let point of tab.get('points')['controls']; let j = index" class="input-group mb-2">
+                  <input [formControlName]="j" placeholder="Point" class="form-control" />
+                  <button type="button" (click)="removePoint(i, j)" class="btn btn-danger">Remove Point</button>
+                </div>
+                <button type="button" (click)="addPoint(i)" class="btn btn-secondary mb-2">Add Point</button>
+              </div>
+
+              <button type="button" (click)="removeTab(i)" class="btn btn-danger mt-2">Remove Tab</button>
+            </div>
+          </div>
+
+          <button type="button" (click)="addTab()" class="btn btn-primary mt-3">Add Tab</button>
+          <button type="submit" class="btn btn-success mt-3">Submit</button>
+        </form>
+      </div> -->
+
+
+
+      <!-- WHAT WE OFFER HOME PAGE -->
+
+
+      <hr>
+      <div class="container p-3">
+  <h3 class="text-center">Services - Home Page</h3>
+
+  <form [formGroup]="sectionForm" (ngSubmit)="submitSection()">
+    <div class="mb-3">
+      <label>Icon Class (e.g., bi bi-cash-stack)</label>
+      <input formControlName="icon" class="form-control" placeholder="Icon class" />
+    </div>
+
+    <div class="mb-3">
+      <label>Heading</label>
+      <input formControlName="heading" class="form-control" placeholder="Section Heading" />
+    </div>
+
+    <div class="mb-3">
+      <label>Paragraph</label>
+      <textarea formControlName="paragraph" class="form-control" placeholder="Section Paragraph"></textarea>
+    </div>
+
+       <div class="mb-3">
+              <button type="submit" class="btn btn-success">Submit</button>
+              <button class="btn btn-danger">Cancel</button>
+       </div>
+  </form>
+
+  <!-- Preview (Optional) -->
+  <div *ngIf="submittedData" class="mt-4">
+    <h4>Preview</h4>
+    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+      <div class="service-item position-relative">
+        <div class="icon">
+          <i [class]="submittedData.icon" style="color: #0dcaf0;"></i>
+        </div>
+          <h3>{{ submittedData.heading }}</h3>
+          <p>{{ submittedData.paragraph }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<hr>
+<!-- Add Testimonial -->
+<div class="container p-3">
+  <h3 class="text-center">Upload Testimonial</h3>
+
+  <form [formGroup]="testimonialUploadForm" (ngSubmit)="submitTestimonialUpload()" enctype="multipart/form-data">
+    <div class="mb-3">
+      <label>Upload Image</label>
+      <input type="file" (change)="onImageSelect($event)" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+      <label>Full Name</label>
+      <input formControlName="personName" class="form-control" placeholder="Full Name" />
+    </div>
+
+    <div class="mb-3">
+      <label>Job Title</label>
+      <input formControlName="jobTitle" class="form-control" placeholder="Job Title" />
+    </div>
+
+    <div class="mb-3">
+      <label>Star Rating</label>
+      <select formControlName="starRating" class="form-select">
+        <option *ngFor="let star of [1,2,3,4,5]" [value]="star">{{ star }} Star{{ star > 1 ? 's' : '' }}</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label>Testimonial Content</label>
+      <textarea formControlName="testimonialContent" class="form-control" placeholder="Write the testimonial here"></textarea>
+    </div>
+
+      <div class="mb-3">
+              <button type="submit" class="btn btn-success">Submit</button>
+              <button class="btn btn-danger">Cancel</button>
+            </div>
+  </form>
+
+  <!-- Preview -->
+  <div *ngIf="uploadedTestimonial" class="mt-4">
+    <h4>Preview</h4>
+    <div class="swiper-slide">
+      <div class="testimonial-item" >
+        <img [src]="uploadedImagePreview" class="testimonial-img" alt="" style="height: 200px; width: 450px;">
+        <h3>{{ uploadedTestimonial.personName }}</h3>
+        <h4>{{ uploadedTestimonial.jobTitle }}</h4>
+      <div class="stars">
+  <i 
+    class="bi" 
+    *ngFor="let star of [1,2,3,4,5]; let i = index" 
+    [ngClass]="i < uploadedTestimonial.starRating ? 'bi-star-fill' : 'bi-star'">
+  </i>
+</div>
+
+        <p>
+          <i class="bi bi-quote quote-icon-left"></i>
+          <span>{{ uploadedTestimonial.testimonialContent }}</span>
+          <i class="bi bi-quote quote-icon-right"></i>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- add Faculty members -->
+
+<hr>
+<div class="container p-3">
+  <h3 class="text-center">Add Faculty Member</h3>
+  <form [formGroup]="facultyForm" (ngSubmit)="submitFacultyUpload()">
+    <div class="mb-3">
+      <label>Name</label>
+      <input formControlName="facultyName" class="form-control" placeholder="Faculty Name" />
+    </div>
+
+    <div class="mb-3">
+      <label>Job Title</label>
+      <input formControlName="jobTitle" class="form-control" placeholder="Job Title" />
+    </div>
+
+    <div class="mb-3">
+      <label>Upload Image</label>
+      <input type="file" (change)="onFacultyImageSelected($event)" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+      <label>Twitter Link</label>
+      <input formControlName="twitterLink" class="form-control" placeholder="Twitter Profile URL" />
+    </div>
+
+    <div class="mb-3">
+      <label>Facebook Link</label>
+      <input formControlName="facebookLink" class="form-control" placeholder="Facebook Profile URL" />
+    </div>
+
+    <div class="mb-3">
+      <label>Instagram Link</label>
+      <input formControlName="instagramLink" class="form-control" placeholder="Instagram Profile URL" />
+    </div>
+
+    <div class="mb-3">
+      <label>LinkedIn Link</label>
+      <input formControlName="linkedinLink" class="form-control" placeholder="LinkedIn Profile URL" />
+    </div>
+
+    <div class="mb-3">
+      <button type="submit" class="btn btn-success">Submit</button>
+      <button type="button" (click)="cancelForm()" class="btn btn-danger">Cancel</button>
+    </div>
+  </form>
+</div>
+
+
+
+
+
+
+
+<!-- add Recent Blog Posts -->
+
+<hr>
+<div class="container p-3">
+  <h3 class="text-center">Add Recent Blog Posts</h3>
+  <form [formGroup]="articleForm" (ngSubmit)="submitArticle()" enctype="multipart/form-data">
+  <div class="mb-3">
+    <label>Article Image</label>
+    <input type="file" (change)="onArticleImageSelected($event)" class="form-control">
+  </div>
+
+  <div class="mb-3">
+    <label>Title</label>
+    <input formControlName="title" class="form-control">
+  </div>
+
+  <div class="mb-3">
+    <label>Post Category</label>
+    <input formControlName="postCategory" class="form-control">
+  </div>
+
+  <div class="mb-3">
+    <label>Author Name</label>
+    <input formControlName="authorName" class="form-control">
+  </div>
+
+  <div class="mb-3">
+    <label>Post Date</label>
+    <input type="date" formControlName="postDate" class="form-control">
+  </div>
+
+  <div class="mb-3">
+    <label>Author Image</label>
+    <input type="file" (change)="onAuthorImageSelected($event)" class="form-control">
+  </div>
+
+  <!-- Subheadings + Paragraphs -->
+  <div class="mb-3">
+    <label>Subheading</label>
+    <input #subheadingInput class="form-control">
+  </div>
+
+  <div class="mb-3">
+    <label>Paragraph</label>
+    <textarea #paragraphInput class="form-control"></textarea>
+  </div>
+
+  <div class="mb-3">
+    <button type="button" class="btn btn-info" (click)="addSubSection(subheadingInput.value, paragraphInput.value)">Add Subsection</button>
+  </div>
+
+  <div *ngFor="let section of subSections; let i = index" class="mb-2">
+    <strong>{{ i + 1 }}. {{ section.subheading }}</strong>
+    <p>{{ section.paragraph }}</p>
+  </div>
+
+  <div class="mb-3">
+    <button type="submit" class="btn btn-success">Submit</button>
+    <button type="button" class="btn btn-danger" (click)="articleForm.reset(); subSections = []">Cancel</button>
+  </div>
+</form>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+
+
+
+
 
 
 

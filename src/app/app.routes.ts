@@ -23,24 +23,6 @@ export const APP_ROUTE: Route[] = [
           import('./admin/admin.routes').then((m) => m.ADMIN_ROUTE),
       },
       {
-        path: 'teacher',
-        canActivate: [AuthGuard],
-        data: {
-          role: Role.Teacher,
-        },
-        loadChildren: () =>
-          import('./teacher/teacher.routes').then((m) => m.TEACHER_ROUTE),
-      },
-      {
-        path: 'student',
-        canActivate: [AuthGuard],
-        data: {
-          role: Role.Student,
-        },
-        loadChildren: () =>
-          import('./student/student.routes').then((m) => m.STUDENT_ROUTE),
-      },
-      {
         path: 'calendar',
         loadChildren: () =>
           import('./calendar/calendar.routes').then((m) => m.CALENDAR_ROUTE),
@@ -54,11 +36,6 @@ export const APP_ROUTE: Route[] = [
         path: 'contacts',
         loadChildren: () =>
           import('./contacts/contacts.routes').then((m) => m.CONTACT_ROUTE),
-      },
-      {
-        path: 'email',
-        loadChildren: () =>
-          import('./email/email.routes').then((m) => m.EMAIL_ROUTE),
       },
       {
         path: 'apps',
@@ -100,24 +77,10 @@ export const APP_ROUTE: Route[] = [
           import('./icons/icons.routes').then((m) => m.ICONS_ROUTE),
       },
       {
-        path: 'extra-pages',
-        loadChildren: () =>
-          import('./extra-pages/extra-pages.routes').then(
-            (m) => m.EXTRA_PAGES_ROUTE
-          ),
-      },
-      {
         path: 'maps',
         loadChildren: () =>
           import('./maps/maps.routes').then((m) => m.MAPS_ROUTE),
-      },
-      {
-        path: 'multilevel',
-        loadChildren: () =>
-          import('./multilevel/multilevel.routes').then(
-            (m) => m.MULTILEVEL_ROUTE
-          ),
-      },
+      }
     ],
   },
   {

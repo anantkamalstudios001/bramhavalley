@@ -15,7 +15,7 @@ export const ADMIN_ROUTE: Route[] = [
       ),
   },
   {
-    path: 'BVIM',
+    path: 'about-us',
     loadChildren: () =>
       import('./teachers/admin-teachers.routes').then(
         (m) => m.ADMIN_TEACHER_ROUTE

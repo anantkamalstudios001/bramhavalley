@@ -1,0 +1,50 @@
+<section class="content">
+  <div class="content-block">
+    @for (breadscrum of breadscrums; track breadscrum) {
+    <div class="block-header">
+      <!-- breadcrumb -->
+      <app-breadcrumb [title]="breadscrum.title" [items]="breadscrum.items" [active_item]="breadscrum.active">
+      </app-breadcrumb>
+    </div>
+    }
+    <!-- Your content goes here  -->
+
+
+
+<!-- campus gallery -->
+
+<hr>
+<div class="container py-4">
+  <h3 class="text-center mb-4">Add Campus Gallery</h3>
+  <form [formGroup]="campusGalleryForm" (ngSubmit)="submitCampusGallery()" enctype="multipart/form-data" novalidate>
+    
+    <div class="mb-3">
+      <label for="campusGalleryImage" class="form-label">Upload Image</label>
+<input
+  type="file"
+  id="campusGalleryImage"
+  class="form-control"
+  (change)="handleCampusImageSelection($event)"
+  accept="image/*"
+  required
+/>
+<div *ngIf="!selectedCampusImageFile && campusGalleryFormSubmitted" class="text-danger">
+  Please select an image.
+</div>
+
+    </div>
+
+    <div class="d-flex justify-content-start gap-2">
+      <button type="submit" class="btn btn-success" >Submit</button>
+      <button type="button" class="btn btn-danger" (click)="resetCampusGalleryForm()">Cancel</button>
+    </div>
+  </form>
+</div>
+
+
+
+
+
+
+  </div>
+</section>

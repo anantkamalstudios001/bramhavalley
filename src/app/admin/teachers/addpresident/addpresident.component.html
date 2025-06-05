@@ -1,0 +1,67 @@
+<section class="content">
+  <div class="content-block">
+    @for (breadscrum of breadscrums; track breadscrum) {
+    <div class="block-header">
+      <!-- breadcrumb -->
+      <app-breadcrumb [title]="breadscrum.title" [items]="breadscrum.items" [active_item]="breadscrum.active">
+      </app-breadcrumb>
+    </div>
+    }
+    <div class="row clearfix">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+        <div class="card">
+          <div class="header">
+            <h2>Chairman Data</h2>
+          </div>
+          <div class="body">
+<form [formGroup]="presidentForm" (ngSubmit)="submitForm()" class="container mt-4">
+
+  <!-- Heading -->
+  <div class="mb-3">
+    <label class="form-label">Heading</label>
+    <input type="text" class="form-control" formControlName="heading" placeholder="Enter heading">
+  </div>
+
+  <!-- Image -->
+  <div class="mb-3">
+    <label class="form-label">Image</label>
+    <input type="file" class="form-control" (change)="onImageChange($event)">
+  </div>
+
+  <!-- President Name -->
+  <div class="mb-3">
+    <label class="form-label">Chairman Name</label>
+    <input type="text" class="form-control" formControlName="presidentName" placeholder="Enter President's name">
+  </div>
+
+  <!-- Biography Paragraphs -->
+  <h5>Biography Paragraphs</h5>
+  <div formArrayName="biographyParagraphs">
+    <div *ngFor="let bio of biographyParagraphs.controls; let i = index" class="mb-3">
+      <textarea [formControlName]="i" rows="3" class="form-control" placeholder="Enter biography paragraph"></textarea>
+      <button class="btn btn-sm btn-danger mt-2" type="button" (click)="removeBiography(i)">Remove</button>
+    </div>
+    <button class="btn btn-sm btn-primary" type="button" (click)="addBiography()">Add Biography Paragraph</button>
+  </div>
+
+  <!-- Vision Paragraphs -->
+  <h5 class="mt-4">Vision Paragraphs</h5>
+  <div formArrayName="visionParagraphs">
+    <div *ngFor="let vision of visionParagraphs.controls; let i = index" class="mb-3">
+      <textarea [formControlName]="i" rows="3" class="form-control" placeholder="Enter vision paragraph"></textarea>
+      <button class="btn btn-sm btn-danger mt-2" type="button" (click)="removeVision(i)">Remove</button>
+    </div>
+    <button class="btn btn-sm btn-primary" type="button" (click)="addVision()">Add Vision Paragraph</button>
+  </div>
+
+  <button type="submit" class="btn btn-success mt-4" [disabled]="presidentForm.invalid">Submit</button>
+</form>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
